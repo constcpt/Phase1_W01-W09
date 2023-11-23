@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            // 当点击按钮时，按钮本身的字体颜色变为红色
+            // 1. 获取按钮
+            var btn = document.querySelector('input');
+            // 2. 给按钮绑定点击事件
+            btn.onclick = function () {
+                // 3. 修改按钮的字体颜色
+                btn.style.color = 'red';
+            };
+            //  当鼠标离开按钮时，字体颜色变成灰色
+            btn.onmouseout = function () {
+                btn.style.color = 'gray';
+            };
+        };
+    </script>
+</head>
+<body>
+    <input type="button" value="点击改变按钮字体颜色">
+</body>
+</html>

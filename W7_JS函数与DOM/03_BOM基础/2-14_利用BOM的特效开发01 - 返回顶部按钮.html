@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-14_利用BOM的特效开发01 - 返回顶部按钮</title>
+    <style>
+        body {
+            height: 5000px;
+            background-image: linear-gradient(to bottom, blue, green, yellow);
+        }
+
+        .backtotop {
+            width: 80px;
+            height: 80px;
+            background-color: rgba(255, 255, 255, .6);
+            position: fixed;
+            bottom: 100px;
+            right: 100px;
+            /* 小手状 */
+            cursor: pointer;
+            /* 实现内部文字垂直水平居中 */
+            line-height: 80px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="backtotop" id="backtotopBtn">返回顶部</div>
+
+    <script>
+        var backtotopBtn = document.getElementById('backtotopBtn');
+
+        // 1. 监听页面的滚动
+        window.addEventListener('scroll', function () {
+            // 2. 获取页面已卷动的高度
+            var scrollTop = document.documentElement.scrollTop || window.scrollY;
+
+            // 3. 判断已卷动的高度是否大于 1000px
+            if (scrollTop >= 1000) {
+                // 4. 如果大于 1000px，就显示返回顶部按钮
+                backtotopBtn.style.display = 'block';
+            } else {
+                // 5. 如果小于 1000px，就隐藏返回顶部按钮
+                backtotopBtn.style.display = 'none';
+            }
+        });
+
+        var timerId = null;
+        // 6. 监听返回顶部按钮的点击
+        backtotopBtn.addEventListener('click', function () {
+            // 设表先关，防止重复点击导致定时器重复开启
+            clearInterval(timerId);
+            // 设置定时器让 scrollTop 逐渐减小
+            timerId = setInterval(function () {
+                document.documentElement.scrollTop -= 100;
+                // 当 scrollTop 小于等于 0 时，清除定时器
+                if (document.documentElement.scrollTop <= 0) {
+                    clearInterval(timerId);
+                }
+            }, 20);
+        });
+    </script>
+</body>
+
+</html>

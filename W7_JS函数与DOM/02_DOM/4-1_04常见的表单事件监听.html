@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-1_04常见的表单事件监听</title>
+</head>
+
+<body>
+    <form id="myform">
+        <!-- 对于表单域里的HTML元素如输入框、单选按钮、复选框、下拉框等等，可以不用设置id只需要设置name属性就可以通过DOM获取到 -->
+        <p>
+            姓名：
+            <input type="text" name="nameField">
+        </p>
+        <p>
+            年龄：
+            <input type="text" name="ageField">
+        </p>
+        <p>
+            <input type="submit" value="submit">
+        </p>
+        <p>
+            <input type="reset" value="reset">
+        </p>
+    </form>
+
+    <script>
+        var myform = document.getElementById('myform'); // 先用id获取到表单元素
+        var nameField = myform.nameField; // 再用获得的表单元素打点调用name属性获取到表单域里的元素
+        var ageField = myform.ageField; 
+
+        // 通过onchange事件监听器监听表单域的值是否已经发生了改变
+        nameField.onchange = function () {
+            console.log('你已经修改完了姓名');
+        };
+        // 通过oninput事件监听器监听表单域的值是否正在发生改变
+        nameField.oninput = function () {
+            console.log('你正在修改姓名');
+        };
+        // 通过onfocus事件监听器监听表单域是否已经获得了焦点
+        nameField.onfocus = function() {
+            console.log('姓名框已经得到了焦点');
+        }
+
+        nameField.onblur = function() {
+            console.log('姓名框已经失去了焦点');
+        }
+
+        // myform.onsubmit = function() {
+        //     alert('你正在尝试提交表单');
+        // }
+        myform.onreset = function() {
+            alert('你正在尝试重置表单');
+        }
+    </script>
+</body>
+
+</html>

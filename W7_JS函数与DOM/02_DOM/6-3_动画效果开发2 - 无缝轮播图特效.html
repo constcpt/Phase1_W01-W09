@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6-3_动画效果开发2 - 无缝轮播图特效</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .carousel {
+            /* 设置宽高和图片大小保持一致，再设置居中 */
+            width: 650px;
+            height: 360px;
+            border: 1px solid #000;
+            margin: 50px auto;
+            /* 父相 */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel ul {
+            list-style: none;
+            width: 6000px;
+            position: relative;
+            left: 0; /* 设置完相对定位设置轮播图位置的初始值，之后在 JS 代码中更改 */
+            /* transition: left .5s ease 0s; */
+        }
+
+        .carousel ul li {
+            float: left;
+        }
+
+        /* 脱离了标准文档流的元素一定可以设置宽和高，这是设置postion: absolute或float: right后a标签元素就可以设置宽高的原因吗？ */
+
+        /* 是的，这个理解是正确的。元素的默认宽度和高度的设定规则是依赖于它在文档流中的位置和性质的。块级元素（比如 `<div>`）默认会占据其父元素的全部宽度，而高度则由其内部内容决定；内联元素（比如 `<span>` 或 `<a>`）的宽度和高度则完全由其内容决定。
+
+        当你将一个元素设置为绝对定位或浮动，这个元素就从标准的文档流中脱离出来，成为一个可以自由设置宽度和高度的元素。这就是为什么设置 `position: absolute` 或 `float: right/left` 之后 `<a>` 标签可以设置宽度和高度的原因。
+
+        需要注意的是，虽然这种方式可以让你为 `<a>` 标签设置宽度和高度，但是它也会使这个元素从文档流中移除，可能会对布局产生影响。因此，在使用这种方式时，你需要考虑到这个元素在布局中的位置，以及它可能对周围元素产生的影响。 */
+
+        .carousel .leftbtn {
+            position: absolute;
+            /* 在默认情况下，<a> 标签是一个内联元素，也就是说它的宽度和高度是由它的内容决定的，而不是由 width 和 height 属性决定的。这就意味着，如果你直接为 <a> 标签设置 width 和 height 属性，它们可能不会生效。因为 a 标签设置了绝对定位脱离了标准文档流，所以可以设置宽高属性 */
+            width: 50px;
+            height: 50px;
+            left: 20px;
+
+            /* 知识回顾：绝对定位的盒子设置垂直/水平居中 */
+            top: 50%;
+            margin-top: -25px;
+
+            background-color: rgb(28, 180, 226);
+            border-radius: 50%;
+        }
+
+        .carousel .rightbtn {
+            position: absolute;
+            
+            width: 50px;
+            height: 50px;
+            right: 20px;
+
+            
+            top: 50%;
+            margin-top: -25px;
+
+            background-color: rgb(28, 180, 226);
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="carousel">
+        <ul>
+            <li><img src="images/beijing/0.jpg" alt=""></li>
+            <li><img src="images/beijing/1.jpg" alt=""></li>
+            <li><img src="images/beijing/2.jpg" alt=""></li>
+            <li><img src="images/beijing/3.jpg" alt=""></li>
+            <li><img src="images/beijing/4.jpg" alt=""></li>
+        </ul>
+        <!-- 两个 a 标签用于制作轮播图的左右两个按钮，href="javascript:;" 作用是执行空的JS代码为的是点击后页面不会刷新 -->
+        <a href="javascript:;" class="leftbtn"></a>
+        <a href="javascript:;" class="rightbtn"></a>
+    </div>
+    <script>
+        // 获取按钮元素，ul 元素
+        var leftbtn = document.querySelector('.leftbtn');
+        var rightbtn = document.querySelector('.rightbtn');
+        var list = document.querySelector('ul');
+        var clonedli = list.firstElementChild.cloneNode(true); // 克隆第一张图片
+        list.appendChild(clonedli); // 将克隆的图片添加到 ul 元素中
+        
+
+        var left = 0; // 设置轮播图的初始位置
+        var lock = true; // 设置锁，防止用户快速点击按钮导致轮播图出现问题，当轮播图移动完毕后，才能再次点击按钮，true 表示可以点击，false 表示不可以点击
+
+        // 为左右按钮使用addEventListener绑定点击事件
+        rightbtn.addEventListener('click', function () {
+            if (!lock) { // 如果 lock 为 false，表示轮播图正在移动，不可以点击按钮
+                return; // 直接退出函数
+            }
+            list.style.transition = 'left .5s ease 0s'; // 设置轮播图的过渡效果
+            // 点击左按钮，轮播图向左移动
+            left -= 650;
+            // 设置轮播图的位置
+            list.style.left = left + 'px';
+            // 判断轮播图是否到达最后一张
+            if (left < -2600) { // 2600 = 650 * 4
+                // 如果到达最后一张，将轮播图的位置设置在0.5s后回到初始位置，为什么是0.5s，因为轮播图的过渡效果是0.5s，所以需要等过渡效果结束后再将轮播图的位置重置
+                setTimeout(function () {
+                    left = 0;
+                    list.style.transition = 'none';
+                    list.style.left = left + "px";
+                }, 500);
+            }
+            
+            lock = false; // 设置 lock 为 false，表示轮播图正在移动，不可以点击按钮
+            // 设置一个定时器，当轮播图移动完毕后，将 lock 设置为 true，表示可以点击按钮
+            setTimeout(function () {
+                lock = true;
+            }, 500);
+        });
+
+        // 为左按钮使用addEventListener绑定点击事件
+        leftbtn.addEventListener('click', function () {
+            if (!lock) { // 如果 lock 为 false，表示轮播图正在移动，不可以点击按钮
+                return; // 直接退出函数
+            }
+            // 判断轮播图是否是第一张
+            if (left == 0) {
+                // 如果是第一张，将轮播图的位置重置在末尾
+                left = -3250; // 3250 = 650 * 5
+                list.style.transition = 'none';
+                list.style.left = left + "px";
+                // 设置一个延时器，这个延时器的延时时间可以是0毫秒，虽然是0毫秒，但是可以让我们过渡先是瞬间取消，然后再加上。这个技巧称为"零延迟" setTimeout（setTimeout with a delay of 0）
+                setTimeout(function () {
+                    left += 650;
+                    list.style.transition = 'left .5s ease 0s';
+                    list.style.left = left + "px";
+                }, 0);
+                /* 在这段代码中，setTimeout 函数被用来将 list 元素的 left 属性设置为新的值，并且添加过渡动画。这个函数的第一个参数是一个回调函数，它会在指定的延迟时间后被执行。在这个例子中，延迟时间被设置为 0 毫秒，也就是说，回调函数会立即被执行。
+                
+                虽然延迟时间被设置为 0 毫秒，但是这个回调函数仍然会被放入 JavaScript 引擎的任务队列中，并在当前任务执行完毕后被执行。这样做的好处是，可以让当前任务先执行完毕，然后再执行回调函数，避免了回调函数的执行影响当前任务的执行。
+
+                在这个例子中，如果没有使用 setTimeout 函数，直接将 list 元素的 left 属性设置为新的值，并且添加过渡动画，可能会导致过渡动画无法正常执行，因为这个操作会阻塞当前任务的执行。使用 setTimeout 函数可以将这个操作放到任务队列中，等待当前任务执行完毕后再执行，从而避免了这个问题。*/
+            }
+            else {
+                // 点击左按钮，轮播图向左移动
+                left += 650;
+                list.style.left = left + 'px';
+            }
+
+            lock = false; // 设置 lock 为 false，表示轮播图正在移动，不可以点击按钮
+            // 设置一个定时器，当轮播图移动完毕后，将 lock 设置为 true，表示可以点击按钮
+            setTimeout(function () {
+                lock = true;
+            }, 500);
+        });
+        /*setTimeout函数延迟时间设为0ms是某种常用的技巧吗？*/
+        /*GitHub Copilot: 是的，将 `setTimeout` 函数的延迟时间设为 0 毫秒是一种常用的技巧，被称为“0 毫秒延迟技巧”（zero-millisecond delay trick）。
+
+        这个技巧的作用是将一个操作放到 JavaScript 引擎的任务队列中，等待当前任务执行完毕后再执行。虽然延迟时间被设置为 0 毫秒，但是这个操作仍然会被放到任务队列中，并在当前任务执行完毕后被执行。这样做的好处是，可以让当前任务先执行完毕，然后再执行操作，避免了操作的执行影响当前任务的执行。
+
+        在前端开发中，常常使用这个技巧来解决一些问题，比如在添加或删除 DOM 元素后，立即获取这些元素的宽度或高度，或者在执行一些复杂的计算操作后，立即更新 UI 界面。
+
+        需要注意的是，虽然将 `setTimeout` 函数的延迟时间设为 0 毫秒可以将一个操作放到任务队列中，但是这个操作仍然需要等待当前任务执行完毕后才能被执行。如果当前任务非常耗时，可能会导致操作的执行被延迟。因此，在使用这个技巧时，需要根据具体情况来决定延迟时间的大小。
+
+        总之，将 `setTimeout` 函数的延迟时间设为 0 毫秒是一种常用的技巧，可以将一个操作放到任务队列中，等待当前任务执行完毕后再执行，避免了操作的执行影响当前任务的执行。
+
+        */
+        
+    </script>
+</body>
+
+</html>

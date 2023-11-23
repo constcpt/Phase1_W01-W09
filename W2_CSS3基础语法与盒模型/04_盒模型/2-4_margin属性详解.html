@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-4_margin属性详解</title>
+    <style>
+        /* 并集选择器 */
+        body, ul, p {
+            margin: 0;
+            padding: 0;
+        }
+        span {
+            border: 1px solid #000;
+        }
+
+        .span1 {
+            margin-right: 30px;
+        }
+
+        .span2 {
+            margin-left: 40px;
+        }
+
+        .box1 {
+            width: 200px;
+            height: 200px;
+            background-color: orange;
+            margin-bottom: 70px;
+        }
+
+        .box2 {
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+            margin-top: 80px;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        section {
+            width: 600px;
+            height: 200px;
+            background-color: rgb(240, 151, 151);
+            /* 盒子水平居中的实现方法 */
+            margin: 0 auto;
+            /* 文字水平居中 */
+            text-align: center;
+            /* 行高等于盒子高，让文字垂直居中 */
+            line-height: 200px;
+        }
+    </style>
+</head> 
+
+<body>
+    <!-- span 标签是并排显示但是 div 标签是竖直显示，这涉及到行内元素和块级元素的相关知识，之后会学 -->
+    <!-- 如果这里第二个 span 标签是换行写的，则可以观察到两个 span 盒子间会有一个小空格，这也是空白折叠现象之一 -->
+    <span class="span1">我是一个span</span><span class="span2">我是一个span</span>
+
+    <div class="box1"></div>
+    <div class="box2"></div>
+
+    <ul>
+        <li>列表项</li>
+        <li>列表项</li>
+        <li>列表项</li>
+    </ul>
+
+    <p>段落</p>
+    <p>段落</p>
+    <p>段落</p>
+
+    <section>
+        行胜于言
+    </section>
+</body>
+
+</html>

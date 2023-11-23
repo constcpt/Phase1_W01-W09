@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-14_练习</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    
+        .box {
+            width: 200px;
+            height: 200px;
+            margin: 200px auto;
+            perspective: 300px;
+            position: relative;
+        }
+    
+        .box p {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 200px;
+            height: 200px;
+
+        }
+        
+        /* 补充代码 */
+        .box p:nth-child(1) {
+            background-color: rgba(255, 0, 0, .5);
+            transform: rotateX(78deg) translateZ(32px);
+            
+        }
+        .box p:nth-child(2) {
+            background-color: rgba(0, 255, 0, .5);
+            transform: rotateX(84deg) translateZ(-2px);
+        }
+        .box p:nth-child(3) {
+            background-color: rgba(0, 9, 255, .5);;
+            transform: rotateX(91deg) translateZ(-36px);
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <p></p>
+        <p></p>
+        <p></p>
+    </div>
+</body>
+</html>

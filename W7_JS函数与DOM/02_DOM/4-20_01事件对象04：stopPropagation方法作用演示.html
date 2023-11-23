@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-20_事件对象04：stopPropagation方法作用演示</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <button id="btn">按我</button>
+    </div>
+    <script>
+        var oBox = document.getElementById('box');
+        var oBtn = document.getElementById('btn');
+
+        // 切断事件冒泡
+        // oBox.onclick = function () {
+        //     console.log('我是盒子');
+        // };
+
+        // oBtn.onclick = function (e) {
+        //     // 阻止事件继续传播
+        //     e.stopPropagation();
+        //     console.log('我是按钮');
+        // };
+        // 控制台只输出我是按钮，因为事件冒泡被阻止了
+
+        // 切断事件捕获
+        oBox.addEventListener('click', function (e) {
+            // 阻止事件继续传播
+            e.stopPropagation();
+            console.log('我是盒子');
+        }, true);
+
+        oBtn.addEventListener('click', function () {
+            console.log('我是按钮');
+        }, true);
+        // 控制台只输出我是盒子，因为事件捕获被阻止了
+    </script>
+</body>
+
+</html>

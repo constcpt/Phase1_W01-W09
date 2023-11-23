@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5-8_闭包的作用：记忆性</title>
+</head>
+
+<body>
+    <script>
+        function createCheckTemp(standardTemp) {
+            function checkTemp(n) {
+                if (n <= standardTemp) { // checkTemp 函数用到了standardTemp变量，根据闭包的作用，它可以记住standardTemp的值
+                    alert('你的体温正常');
+                } else {
+                    alert('你的体温偏高');
+                }
+            }
+            return checkTemp;
+        }
+
+        // 创建checkTemp_Aplacep函数表达式，它以37.1度为标准线
+        var checkTemp_Aplace = createCheckTemp(37.1);
+        // 创建checkTemp_Bplace函数表达式，它以37.3度为标准线
+        var checkTemp_Bplace = createCheckTemp(37.3);
+        
+        checkTemp_Aplace(37.2); // 你的体温偏高
+        checkTemp_Bplace(37.2); // 你的体温正常
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7-1_包装类</title>
+</head>
+<body>
+    <script>
+        var a = new Number(123);
+        var b = new String('慕课网');
+        var c = new Boolean(true);
+        
+        console.log(a); // [Number: 123]
+        console.log(typeof a); // object
+        console.log(b); // [String: '慕课网']
+        console.log(typeof b); // object
+        console.log(c); // [Boolean: true]
+        console.log(typeof c); // object
+
+        // 通过包装类产生的实例对象，虽然类型是object，但和基本类型值一样可以参与运算
+        console.log(5 + a);         // 128
+        console.log(b.slice(0, 2)); // '慕课'
+        console.log(c && true);     // true
+
+        var d = 123;
+        var e = '慕课网';
+        var f = true;
+
+        console.log(typeof d); // number
+        console.log(typeof e); // string
+        console.log(typeof f); // boolean
+
+        // 当基本类型值调用方法或者属性时，JavaScript 会在内部自动创建一个对应的包装类实例对象，然后调用实例对象的方法或者属性。最典型就是字符串虽然是值类型，但是可以打点调用length属性，以及slice、substr、substring等方法，原因就是JavaScript在内部自动创建了一个String包装类实例对象，然后调用实例对象的方法或者属性。
+        console.log(d.__proto__ === Number.prototype);       // true，当d调用__proto__属性时，JavaScript会在内部自动创建一个对应的Number包装类实例对象，然后调用实例对象的__proto__属性
+        console.log(e.__proto__ === String.prototype);       // true
+        console.log(String.prototype.hasOwnProperty('toLowerCase'));    // true，toLowerCase是String.prototype的属性，当e调用toLowerCase方法时，JavaScript会在内部自动创建一个对应的String包装类实例对象，然后调用实例对象的toLowerCase方法
+        console.log(String.prototype.hasOwnProperty('slice'));          // true
+        console.log(String.prototype.hasOwnProperty('substr'));         // true
+        console.log(String.prototype.hasOwnProperty('substring'));      // true
+
+        /*  `d` is value type not an object, why `d.__proto__` is valid?
+             
+            In JavaScript, even primitive values like numbers, strings, and booleans have corresponding object wrapper types. These object wrapper types are created automatically when you access a property or method on a primitive value.
+
+            When you access a property or method on a primitive value, JavaScript automatically converts the primitive value to an object wrapper type, and then accesses the property or method on that object wrapper. This is called "boxing" or "wrapping".
+
+            So when you access `d.__proto__`, JavaScript automatically boxes the primitive value `d` into a `Number` object, and then accesses the `Number` object's prototype. This is why `d.__proto__` is valid even though `d` is a primitive value.
+        */
+    </script>
+</body>
+</html>

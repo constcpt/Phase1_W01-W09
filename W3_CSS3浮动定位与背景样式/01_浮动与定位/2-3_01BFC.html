@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-3_01BFC</title>
+    <style>
+        .box {
+            width: 400px;
+            border: 10px solid #000;
+            /* float: left; 可以让盒子形成 BFC，但盒子也不能平白无故就设置浮动，所以使用浮动来形成 BFC 不靠谱 */
+            /* display: inline-block; 可以让盒子形成 BFC，但一个元素本来是块级元素，非要更改成行内块或其他，总感觉怪怪的 */
+            overflow: hidden;
+        }
+        .box .c1{
+            width: 200px;
+            height: 200px;
+            background-color: orange;
+            float: left;
+        }
+        .box .c2{
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="c1"></div>
+        <div class="c2"></div>
+    </div>
+</body>
+</html>

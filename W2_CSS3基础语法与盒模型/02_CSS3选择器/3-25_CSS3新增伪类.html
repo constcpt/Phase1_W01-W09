@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .para {
+            /* 宽度、高度 */
+            width: 100px;
+            height: 100px;
+            /* 边框 */
+            border: 1px solid #000;
+        }
+        
+        /* 只会选中内部有没有内容的 p 标签，注意空格和换行不能视为没有内容 */
+        .para:empty {
+            background-color: red;
+        }
+
+        /* 选择当前获得焦点的表单元素 */
+        input:focus {
+            background-color: rgb(239, 243, 181);
+        }
+
+        input:disabled {
+            border: 1px solid #000;
+        }
+
+        input:enabled {
+            border: 1px solid rgb(17, 84, 209);
+        }
+
+        /* "+" 是在元素关系选择器中学的相邻兄弟选择器，这里组合使用了 CSS 选择器，意思是选择已经被点击的 Input 标签后边的 span 标签*/
+        input:checked+span {
+            color: red;
+        }
+
+        /* 对根元素进行设置，比方说网页的默认字号大小，设置滚动条的样式，以后会学习继承性，通过继承性就能影响所有的文字大小 */
+        :root {
+            font-size: 20px;
+        }
+        /* :root 等价于 html，见下述代码 */
+        /* html {
+            font-size: 20px;
+        } */
+    </style>
+</head>
+
+<body>
+    <p class="para"></p>
+    <p class="para"></p>
+    <p class="para">123</p>
+    <p class="para"> </p>
+
+    <p>
+        <!-- 这是之前学过的表单标签中表单基础控件之单行文本框 -->
+        <input type="text">
+        <input type="text">
+        <!-- 加了 disabled 属性代表该单行文本框被禁用 -->
+        <input type="text" disabled>
+        <input type="text" disabled>
+        <input type="text">
+    </p>
+
+    <p>
+        <!-- 这是之前学过的表单标签中表单基础控件之复选框 -->
+        <input type="checkbox"> <span>文字1</span>
+        <input type="checkbox"> <span>文字2</span>
+        <input type="checkbox"> <span>文字3</span>
+        <input type="checkbox"> <span>文字4</span>
+    </p>
+
+    <!-- <p>
+        <input type="checkbox"> <span>文字</span>
+        <input type="checkbox"> <span>文字</span>
+        <input type="checkbox"> <span>文字</span>
+        <input type="checkbox"> <span>文字</span>
+    </p> -->
+</body>
+
+</html>

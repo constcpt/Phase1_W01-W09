@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-18_事件对象02：charCode和keyCode</title>
+</head>
+
+<body>
+    <input type="text" id="field1">
+    <h1 id="info1"></h1>
+    <input type="text" id="field2">
+    <h1 id="info2"></h1>
+
+    <script>
+        var oField1 = document.getElementById('field1');
+        var oInfo1 = document.getElementById('info1');
+        var oField2 = document.getElementById('field2');
+        var oInfo2 = document.getElementById('info2');
+
+        oField1.onkeypress = function (e) {
+            oInfo1.innerText = '你输入的字符的字符码是' + e.charCode;
+        };
+
+        // onkeydown事件和onkeypress事件的区别：onkeydown事件可以监听到所有的按键，包括功能键，而onkeypress事件只能监听到字符键，不能监听到功能键
+        oField2.onkeydown = function (e) {
+            oInfo2.innerText = '你按下的按键的键码是' + e.keyCode;
+        };
+
+        //charCode和keyCode属性已经被废弃，不建议使用，见 4-20 的补充
+
+        // charCode 和 keyCode 这两个属性都已经被废弃，不再建议使用。它们的替代方案是 key 和 code 属性。
+        /*
+            在早期的浏览器和 JavaScript 规范中，keyCode 属性被用于获取按键的键码，而 charCode 属性被用于获取按下的字符的 Unicode 编码。然而，这两个属性在不同的浏览器和平台之间存在一些兼容性问题。
+            最新的规范建议使用 key 属性来代替这两个属性。key 属性返回代表按下的键的字符串。这个字符串对于特殊键（如 "Enter", "Escape", "ArrowRight" 等）是它们的名字，对于字符键，是实际输入的字符。
+            下面是一个例子：
+            document.addEventListener('keydown', function(event) {
+            console.log(event.key);
+            });
+            在这个例子中，当你按下一个键时，会输出该键代表的字符串。例如，如果你按下 "a" 键，会输出 "a"；如果你按下右箭头键，会输出 "ArrowRight"。
+            请注意，虽然 charCode 和 keyCode 被废弃，但是为了向后兼容，它们仍然在所有主流浏览器中可用。然而，为了编写未来兼容的代码，建议使用 key 属性代替 charCode 和 keyCode。
+        */
+    </script>
+</body>
+
+</html>

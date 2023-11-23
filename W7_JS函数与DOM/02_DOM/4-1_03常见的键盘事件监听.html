@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4-1_03常见的键盘事件监听</title>
+  </head>
+  <body>
+    姓名：
+    <input type="text" id="nameField" />
+    <script>
+      var nameField = document.getElementById("nameField");
+
+      nameField.onkeydown = function () {
+        console.log("我是onkeydown");
+      };
+
+      nameField.onkeypress = function () {
+        console.log("我是onkeypress");
+      };
+
+      nameField.onkeyup = function () {
+        console.log("我是onkeyup");
+      };
+    </script>
+  </body>
+</html>

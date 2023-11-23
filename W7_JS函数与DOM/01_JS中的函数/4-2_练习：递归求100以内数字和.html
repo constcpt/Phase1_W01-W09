@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-2_练习：递归求100以内数字和</title>
+</head>
+<body>
+    <script>
+        //通过递归算法，求1+2+3+4+5+6……100的和
+        function sum(n) {
+            if (n == 1) return 1;
+            return n + sum(n - 1);
+        }
+
+        var result = sum(100);
+        alert(result);
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-10_使用call或apply可指定函数的上下文</title>
+</head>
+<body>
+    <script>
+        function sum(b1, b2) {
+            alert(this.chinese + this.maths + this.english + b1 + b2);
+        };
+
+        var xiaoming = {
+            chinese: 100,
+            maths: 90,
+            english: 80,
+            // sum: sum
+        };
+
+        // call 和 apply 方法是通过函数对象来打点调用的，作用是明确指定函数的 this 指向哪个对象，然后再调用该函数。
+        sum.call(xiaoming, 3, 5);
+        sum.apply(xiaoming, [3, 5]);
+
+        function fun1 () {
+            fun2.apply(this, arguments);
+        }
+        function fun2 (a, b) {
+            alert(a + b);
+        }
+        fun1(33, 44); // 77，fun1 中的 this 指向 window 但这里没有用到，arguments 是 fun1 的参数列表 [33, 44]
+    </script>
+</body>
+</html>

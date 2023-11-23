@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function People(name, age, sex) {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+        }
+        // 往原型上添加nationality属性
+        People.prototype.nationality = '中国';
+
+        // 实例化
+        var xiaoming = new People('小明', 18, '男');
+        var tom = new People('汤姆', 20, '男');
+        tom.nationality = '美国'; // 给tom实例添加nationality属性，值为美国
+
+        console.log(xiaoming.nationality); // 中国 
+        console.log(tom.nationality); // 美国
+
+        // 原型链的遮蔽效应：当一个对象的原型上有某个属性，而该对象本身也有该属性时，该对象本身的属性会遮蔽掉原型上的属性，也就是说，该对象本身的属性优先级高于原型上的属性
+    </script>
+</body>
+</html>

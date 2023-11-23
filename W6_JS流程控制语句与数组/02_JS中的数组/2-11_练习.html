@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-11_练习</title>
+</head>
+<body>
+    <script>
+        var arr = [];
+        var input;
+        while (input != "退出") {
+            input = prompt("请输入员工工资，输入“退出”结束");
+            if (input == "退出" || input == null || input == "" || isNaN(input)) {
+                break;
+            }
+            arr.push(input);
+        }
+        
+        document.write(arr);
+    </script>
+
+
+</body>
+</html>

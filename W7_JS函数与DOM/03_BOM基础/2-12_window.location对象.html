@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-12_window.location对象</title>
+</head>
+
+<body>
+    <button id="btn1">点我去看慕课</button>
+    <button id="btn2">刷新</button>
+    <script>
+        var btn1 = document.getElementById('btn1');
+        var btn2 = document.getElementById('btn2');
+
+        btn1.addEventListener('click', function () {
+            window.location.href = 'http://www.imooc.com';
+        });
+
+        btn2.addEventListener('click', function () {
+            window.location.reload(true); 
+            /**
+             * 可以给reload()方法传递一个布尔参数，强迫浏览器从服务器上而不是从缓存中重新加载页面。例如，window.location.reload(true)将强制浏览器从服务器上重新加载页面。这个方法对于确保用户看到最新的数据非常有用，因为它将使浏览器跳过缓存，直接从服务器上加载页面。
+             * true: 从服务器重新加载
+             * false: 从缓存加载（默认）
+             */
+        });
+    </script>
+</body>
+
+</html>

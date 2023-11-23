@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-9_位移变形</title>
+    <style>
+        .box1{
+            width: 200px;
+            height: 200px;
+            background-color: orange;
+        }
+        .box2{
+            width: 200px;
+            height: 200px;
+            background-color: green;
+            /* box2 从原来的位置向右移动 400px，向下移动 100px，是一种相对移动。和相对定位非常像，都会在老家留坑， */
+            transform: translate(400px, 100px);
+            margin-bottom: 10px;
+        }
+        .box3{
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+</body>
+</html>

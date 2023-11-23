@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-3_04绝对定位的盒子垂直居中</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            width: 400px;
+            height: 300px;
+            border: 1px solid #000;
+            margin: 40px auto;
+            /* 相对定位的 div 盒子将成为绝对定位 p 的参考盒子 */
+            position: relative;
+        }
+
+        p {
+            width: 80px;
+            height: 80px;
+            background-color: orange;
+            position: absolute;
+            /* 设置垂直居中 */
+            top: 50%;
+            margin-top: -40px;
+            /* 设置水平居中 */
+            left: 50%;
+            margin-left: -40px;
+            /* 为什么此时设置水平居中不使用 margin: 0 auto;? 
+               因为设置了绝对定位的元素已经脱离了标准文档流，margin 属性就不能再用于水平居中了。
+               此时想要实现水平居中就要使用 left: 50%;，margin-left 为自己宽度的一半*/
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <p></p>
+    </div>
+</body>
+
+</html>

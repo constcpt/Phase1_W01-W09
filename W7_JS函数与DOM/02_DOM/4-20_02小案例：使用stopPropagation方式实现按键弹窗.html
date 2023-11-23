@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-20_小案例：使用stopPropagation方式实现按键弹窗</title>
+    <style>
+        .modal {
+            width: 400px;
+            height: 140px;
+            background-color: #333;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -70px;
+            margin-left: -200px;
+            /* display: none; 设置盒子默认隐藏 */
+            display: none; 
+            /* 知识回顾：display: block 不仅可以将元素转成块级元素，还可以让元素由隐藏状态变成显示状态。display: block 和 display: none 是一对属性，经常配合在一起实现元素显示和隐藏 */
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn">按我弹出弹出层</button>
+    <div class="modal" id="modal"></div>
+
+    <script>
+        var oBtn = document.getElementById('btn');
+        var oModal = document.getElementById('modal');
+
+        // 点击按钮的时候，弹出层显示
+        oBtn.addEventListener('click', function (e) {
+            // 使用stopPropagation()阻止事件继续传播到document身上，否则即使点击按钮，弹出层也不会显示
+            e.stopPropagation();
+            oModal.style.display = 'block';
+            //知识回顾：display: block 不仅可以将元素转成块级元素，还可以让元素由隐藏状态变成显示状态。display: block 和 display: none 是一对属性，经常配合在一起实现元素显示和隐藏
+        });
+
+        // 点击页面任何部分的时候，弹出层关闭
+        document.addEventListener('click', function () {
+            oModal.style.display = 'none';
+        });
+
+        // 点击弹出层内部的时候，不能关闭弹出层，所以应该阻止事件继续传播
+        oModal.addEventListener('click', function (e) {
+            // 阻止事件继续传播到document身上，否则在弹出层内点击，弹出层也会关闭，与需求不符
+            e.stopPropagation();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7-7_练习：猜Math.random()产生的随机数是什么</title>
+</head>
+<body>
+    <script>
+        var randomNum = Math.floor(Math.random() * 10); // 生成一个0到9之间的随机整数
+        var userNum = prompt('请输入一个0到9之间的整数：');
+
+        // 反复弹出输入框，让用户输入猜的数字，直到用户输入的数字与随机产生的数字相等
+        while (userNum != randomNum) {
+            if (userNum > randomNum) {
+                alert('猜大了');
+            } else {
+                alert('猜小了');
+            }
+            userNum = prompt('请输入一个0到9之间的整数：');
+        }
+        alert('猜对了');
+        
+    </script>
+</body>
+</html>

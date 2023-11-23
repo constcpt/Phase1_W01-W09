@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-13_练习：制作五星红旗</title>
+    <style>
+        /* 思路总结：https://class.imooc.com/course/qadetail/323549 */
+        /* 五角星的制作方法： 一个五角星可以由三个三角形拼接而来，这样就需要由三个元素来制作三个三角形，此时::before和::after伪元素可以代替两个真实元素来制作三角形，代码看起来更清晰；然后给所有的五角星调整位置和大小*/
+        .bg {
+            width: 600px;
+            height: 400px;
+            background-color: red;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .bg .star {
+            position: absolute;
+            border: 46px solid transparent;
+            border-top: 33.4px solid yellow;
+            top: 120px;
+            left: 90px;
+            /* background-color: yellow; */
+            /* top: 50%; */
+        } 
+
+        .bg .star::before {
+            content: '';
+            position: absolute;
+            border: 46px solid transparent;
+            border-top: 33.4px solid yellow;
+            transform: translate(-23px, -50px) rotate(-72deg);
+        }
+
+        .bg .star::after {
+            content: '';
+            position: absolute;
+            border: 46px solid transparent;
+            border-top: 33.4px solid yellow;
+            transform: translate(-70px, -50px) rotate(72deg);
+        }
+
+        .bg .star:nth-child(2) {
+            top: 30px;
+            left: 180px;
+            transform: rotate(25deg) scale(0.6);
+        }
+
+        .bg .star:nth-child(3) {
+            top: 80px;
+            left: 220px;
+            transform: rotate(45deg) scale(0.6);
+        }
+
+        .bg .star:nth-child(4) {
+            top: 130px;
+            left: 220px;
+            transform: rotate(65deg) scale(0.6);
+        }
+
+        .bg .star:nth-child(5) {
+            top: 180px;
+            left: 180px;
+            transform: rotate(85deg) scale(0.6);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg">
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-2_使用浮动实现网页布局</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        header{
+            width: 1000px;
+            height: 100px;
+            /* 左右 margin 设置为 auto 盒子将水平居中 */
+            margin: 0 auto;
+            /* background-color: #333; */
+        }
+        .content{
+            width: 1000px;
+            height: 500px;
+            margin: 20px auto;
+            /* background-color: #333; */
+        }
+        footer{
+            width: 1000px;
+            height: 100px;
+            margin: 0px auto;
+            background-color: #333;
+        }
+        header .logo{
+            float: left;
+            width: 220px;
+            height: 100px;
+            background-color: orange;
+        }
+        header .login{
+            float: right;
+            width: 220px;
+            height: 30px;
+            background-color: orange;
+        }
+        nav {
+            float: right;
+            width: 690px;
+            height: 50px;
+            margin-top: 20px;
+            background-color: green;
+        }
+        .content .ad{
+            float: left;
+            width: 300px;
+            height: 500px;
+            background-color: rgb(9, 141, 182);
+        }
+        .content main{
+            float: right;
+            width: 680px;
+            height: 500px;
+            /* background-color: rgb(9, 141, 182); */
+        }
+        .content main .banner {
+            /* 不并排的盒子不要/不能设置浮动 */
+            width: 680px;
+            height: 380px;
+            background-color: orange;
+        }
+        .content main .pics {
+            /* 不并排的盒子不要/不能设置浮动 */
+            width: 680px;
+            height: 100px;
+            margin-top: 20px;
+            /* background-color: orange; */
+        }
+        .content main .pics ul {
+            /* 去掉无序列表列表项的小圆点 */
+            list-style: none;
+        }
+        .content main .pics ul li{
+            float: left;
+            width: 160px;
+            height: 100px;
+            background-color: blue;
+            margin-right: 10px;
+        }
+        /* 单独设置最后一个列表项盒子为 170 宽且没有右 margin */
+        .content main .pics ul li:last-child {
+            width: 170px;
+            margin-right: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo"></div>
+        <div class="login"></div>
+        <!-- nav 是 H5 语义化标签表示导航条的语义 -->
+        <nav></nav>
+    </header>
+    <section class="content">
+        <!-- 广告区域 -->
+        <aside class="ad"></aside>
+        <main>
+            <div class="banner"></div>
+            <div class="pics">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+        </main>
+    </section>
+    <footer></footer>
+</body>
+</html>

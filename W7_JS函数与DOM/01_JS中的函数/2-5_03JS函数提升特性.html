@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-5_03JS函数提升特性</title>
+</head>
+
+<body>
+    <script>
+        // fun();
+
+        // function fun() {
+        //     console.log('我执行了');
+        // }
+
+        fun(); //报错：Uncaught TypeError: fun is not a function
+        var fun = function() {
+            console.log('我执行了');
+        }
+    </script>
+</body>
+
+</html>

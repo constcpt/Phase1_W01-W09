@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-15_02CSS精灵</title>
+    <style>
+        .money {
+            /* 宽度高度不能瞎设，要通过设计软件如 PS 查看精灵图上需要显示的小图标的具体大小来设 */
+            width: 34px;
+            height: 32px;
+            /* css精灵与绝对定位没有必然联系，二者不是关联属性。这里设置定位，主要是想移动money整体的位置方便演示 */
+            position: absolute;
+            top: 200px;
+            left: 300px;
+            border: 1px solid #000;
+            background-image: url(images/sprites.png);
+            /* 背景图位置需要通过设计软件如 PS 查看精灵图上需要显示的小图标的具体位置来设 */
+            background-position: -66px -488px;
+        }
+        .zjh {
+            width: 32px;
+            height: 32px;
+            /* css精灵与绝对定位没有必然联系，二者不是关联属性。这里设置定位，主要是想移动zjh整体的位置方便演示 */
+            position: absolute;
+            top: 200px;
+            left: 200px;
+            border: 1px solid #000;
+            background-image: url(images/sprites.png);
+            background-position: 0 -980px;
+        }
+        ul {
+            list-style: none;
+        }
+        ul li {
+            position: relative;
+            /* 这里移动文字时的padding属性写在了ul li{}里面，可li标签里包含了有背景图的i标签，i标签本来也应该跟着移动的，可事实时没有跟着移动，是因为i标签用了绝对定位技术脱离了标准文档流 */
+            padding-left: 20px;
+        }
+        i.dg {
+            /* 这里设置绝对定位是为了子绝父相以 li 盒子为参考调整小图标位置，并且让行内元素 i 可以设置宽高 */
+            position: absolute;
+            top: 4px;
+            left: 0;
+            width: 14px;
+            height: 8px;
+            background-image: url(images/sprites.png);
+            background-position: 0 -12px;
+        }
+    </style>
+</head>
+<body>
+    <i class="money"></i>
+    <i class="zjh"></i>
+    <ul>
+        <li><i class="dg"></i>列表项的文字</li>
+        <li><i class="dg"></i>列表项的文字</li>
+        <li><i class="dg"></i>列表项的文字</li>
+        <li><i class="dg"></i>列表项的文字</li>
+        <li><i class="dg"></i>列表项的文字</li>
+        <li><i class="dg"></i>列表项的文字</li>
+        <li><i class="dg"></i>列表项的文字</li>
+        <li><i class="dg"></i>列表项的文字</li>
+        <li><i class="dg"></i>列表项的文字</li>
+        <li><i class="dg"></i>列表项的文字</li>
+    </ul>
+</body>
+</html>

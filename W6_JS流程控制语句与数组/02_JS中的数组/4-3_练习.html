@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-3_练习</title>
+</head>
+
+<body>
+    <script>
+        var arr = ["有效", "无效", "有效", "无效", "无效", "有效"];
+        // 在循环中，获取数组的每一个元素，判断是否为“无效”。如果条件成立，则通过splice方法移除此元素，要在原数组上进行操作。 最后在控制台输出arr。
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == "无效") {
+                arr.splice(i, 1);
+                i--;
+            }
+        }
+        console.log(arr); // ["有效", "有效", "有效"]
+    </script>
+</body>
+
+</html>

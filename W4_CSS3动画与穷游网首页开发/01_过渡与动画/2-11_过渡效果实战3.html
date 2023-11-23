@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-11_过渡效果实战3</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            width: 200px;
+            height: 200px;
+            margin: 40px auto;
+            /* border: 1px solid #000; */
+            /* 3D 旋转一定要给舞台设置 perspective 属性 */
+            perspective: 500px;
+            position: relative;
+        }
+        .box img {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+            border-radius: 50%;
+        }
+        /* 小狗图片要覆盖小猫图片，故使用绝对定位设置小狗图片 */
+        .box img.dog {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform-origin: 0 0;
+            transition: transform 1s ease 0s;
+        }
+        .box:hover img.dog {
+            transform: rotateY(-180deg);
+        }
+        /* 利用 CSS 的层叠性单独更改旋转轴和旋转角度 */
+        .no2 img.dog {
+            transform-origin: 100% 0;
+        }
+        .no2:hover img.dog {
+            transform: rotateY(180deg);
+        }
+        .no3 img.dog {
+            transform-origin: 0 0;
+        }
+        .no3:hover img.dog {
+            transform: rotateX(180deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <img class="cat" src="images/cat.jpg" alt="">
+        <img class="dog" src="images/dog.jpg" alt="">
+    </div>
+    <!-- box 类在这里相当于一个公共类 -->
+    <div class="box no2">
+        <img class="cat" src="images/cat.jpg" alt="">
+        <img class="dog" src="images/dog.jpg" alt="">
+    </div>
+    <div class="box no3">
+        <img class="cat" src="images/cat.jpg" alt="">
+        <img class="dog" src="images/dog.jpg" alt="">
+    </div>
+</body>
+</html>

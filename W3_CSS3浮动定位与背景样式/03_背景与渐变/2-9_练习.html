@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-9_练习</title>
+    <style>
+        a {
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        div {
+            background-image: url("http://climg.mukewang.com/582c37e50001b08102000065.jpg");
+            width: 100px;
+            height: 100px;
+            /* 使用display: none;意味着初始时各个div是隐藏状态，默认状态图片是不显示的 */
+            display: none;
+            border: 2px solid red;
+            background-repeat: no-repeat;
+        }
+
+        /*补充代码*/
+        .length {
+            width: 121px;
+        }
+        .length:hover div {
+            /* display: block 不仅可以将元素转成块级元素，还可以让元素由隐藏状态变成显示状态。display: block 和 display: none 是一对属性，经常配合在一起实现元素显示和隐藏 */
+            display: block;
+            background-size: 100px 100px;
+        }
+
+        .percent {
+            width: 87px;
+        }
+        .percent:hover div {
+            display: block;
+            background-size: 50% 50%;
+        }
+
+        .cover {
+            width: 52px;
+        }
+        .cover:hover div {
+            display: block;
+            background-size: cover;
+        }
+
+        .contain {
+            width: 71px;
+        }
+        .contain:hover div {
+            display: block;
+            background-size: contain;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>background-size不同属性值不同效果</h2>
+    <ul>
+        <li class="length">
+            <h3><a href="">100px 100px</a></h3>
+            <div></div>
+        </li>
+        <li class="percent">
+            <h3><a href="">50% 50%</a></h3>
+            <div></div>
+        </li>
+        <li class="cover">
+            <h3><a href="">cover</a></h3>
+            <div></div>
+        </li>
+        <li class="contain">
+            <h3><a href="">contain</a></h3>
+            <div></div>
+        </li>
+    </ul>
+</body>
+
+</html>

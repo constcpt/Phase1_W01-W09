@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // （1）循环弹出输入框，用户输入的任意字符的前两个被替换为“hello”，后面的字符不受影响，比如在页面中输入一组数据：1,2,3,4,5   把前两项（1和2）换成hello，最后的结果是hello，3，4，5。
+        // （2）当输入“-1”时，输入框停止弹出
+
+        var arr = [];
+        var input;
+        while (true) {
+            input = prompt("请输入任意字符，输入“-1”结束");
+            if (input == "-1") {
+                break;
+            }
+            arr.push(input);
+        }
+        arr.splice(0, 2, "hello");
+        document.write(arr);
+    </script>
+</body>
+</html>

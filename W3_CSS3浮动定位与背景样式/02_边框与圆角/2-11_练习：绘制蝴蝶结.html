@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-11_练习：绘制蝴蝶结</title>
+    <style>
+        /* 一般元素存在重叠效果的时候，推荐使用定位实现 */
+        .box {
+            position: relative;
+        }
+        .bd1 {
+            width: 0;
+            height: 0;
+            border: 100px solid transparent;
+            border-left-color: #f00;
+            border-radius: 80px;
+        }
+        .bd2 {
+            width: 0;
+            height: 0;
+            border: 100px solid transparent;
+            border-right-color: #f00;
+            position: absolute;
+            top: 0;
+            left: -10px;
+            border-radius: 80px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="bd1"></div>
+        <div class="bd2"></div>
+    </div>
+</body>
+</html>

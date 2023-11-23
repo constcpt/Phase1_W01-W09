@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-4_练习：数组sort方法排序</title>
+</head>
+
+<body>
+    <script>
+        //补充代码，实现对用户输入数据进行降序排序，注意：用户输入的结束符“-1”不进行排序。
+        var input;
+        var arr = [];
+        while (input != "-1") {
+            input = Number(prompt("请输入您想排序的数字"));
+            //补充代码
+            arr.push(input);
+        }
+        //补充代码
+        arr.pop();
+        arr.sort(function compareFn(a, b) { return b - a; }); //在括号中补充代码
+        document.write(arr);
+    </script>
+</body>
+
+</html>

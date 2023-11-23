@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-7&8_练习：类型转换之数据转数字</title>
+</head>
+<body>
+    <script>
+        var a = "50px", b = "px50", c = "50px50", d = "50.51";
+        document.write(parseInt(a) + "<br>"); //50
+        document.write(parseInt(b) + "<br>"); //NaN
+        document.write(parseInt(c) + "<br>"); //50
+        document.write(parseInt(d) + "<br>"); //50
+        document.write("<br>");
+        var e = "50px", f = "px50", g = "050px", h = "50.12345", i = "50.123px45";
+        document.write(parseFloat(e) + "<br>"); //50
+        document.write(parseFloat(f) + "<br>"); //NaN
+        document.write(parseFloat(g) + "<br>"); //50
+        document.write(parseFloat(h) + "<br>"); //50.12345
+        document.write(parseFloat(i) + "<br>"); //5050.123
+
+    </script>
+</body>
+</html>

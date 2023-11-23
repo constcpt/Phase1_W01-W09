@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-1_01标签选择器</title>
+    <style>
+        span {
+            color: red;
+        }
+        ul {
+            /* 去掉无序列表列表项的小圆点 */
+            list-style: none;
+        }
+        a {
+            /* 去掉超链接的下划线 */
+            text-decoration: none;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <p>我们一定<span>不负韶华，只争朝夕</span></p>
+    <div>
+        <div>
+            <ul>
+                <li>A</li>
+                <li><span>B</span></li>
+                <li><span>C</span></li>
+                <li><span>D</span></li>
+            </ul>
+        </div>
+    </div>
+    <p><a href="">我是一个超级链接</a></p>
+    <p><a href="">我是一个超级链接</a></p>
+    <p><a href="">我是一个超级链接</a></p>
+</body>
+</html>

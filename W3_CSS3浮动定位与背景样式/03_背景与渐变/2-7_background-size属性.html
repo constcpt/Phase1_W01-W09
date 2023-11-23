@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-7_background-size属性</title>
+    <style>
+        .box1 {
+            width: 500px;
+            height: 300px;
+            border: 1px solid #000;
+            background-image: url(images/0.jpg);
+            /* 背景图片的宽度是 300px，高度根据宽度等比例设置 */
+            background-size: 300px auto;
+            margin-bottom: 10px;
+        }
+        .box2 {
+            width: 500px;
+            height: 300px;
+            border: 1px solid #000;
+            background-image: url(images/0.jpg);
+            /* 背景图片的宽度是盒子宽度的一半，高度根据宽度等比例设置 */
+            /* background-size: 50% auto; */
+            /* 背景图片的宽度是盒子宽度的 25%，高度是盒子高度的 25%，注意此时背景图片很可能扭曲变形了，因为图片比例和盒子比例很可能是不一样的 */
+            background-size: 25% 25%;
+            margin-bottom: 10px;
+        }
+        .box3 {
+            width: 400px;
+            height: 300px;
+            border: 1px solid #000;
+            background-image: url(images/0.jpg);
+            /* 背景图片改变其尺寸使其能够被盒子完整容纳，contain 就是表示容纳的意思 */
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin-bottom: 10px;
+        }
+        .box4 {
+            width: 400px;
+            height: 300px;
+            border: 1px solid #000;
+            background-image: url(images/0.jpg);
+            /* 背景图片改变其尺寸使其在不扭曲变形的基础上完全覆盖整个盒子，哪怕会导致显示的图片内容并不完整 */
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+    <div class="box4"></div>
+</body>
+</html>

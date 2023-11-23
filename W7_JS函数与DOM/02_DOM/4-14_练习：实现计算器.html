@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4-14_练习：实现计算器</title>
+    <script>
+        window.onload = function () {
+            // 1. 获取按钮
+            var btn = document.querySelector('#btn');
+            // 2. 给按钮绑定点击事件
+            btn.onclick = function () {
+                // 3. 获取用户输入的数据
+                var num1 = document.querySelector('#num1').value;
+                var num2 = document.querySelector('#num2').value;
+                var operate = document.querySelector('#operate').value;
+                // 4. 判断用户的输入是否是数字
+                if (isNaN(num1) || isNaN(num2)) {
+                    alert('请输入数字');
+                    return;
+                }
+                // 5. 根据用户选择的运算符，计算结果，并将结果显示在result文本框中
+                switch (operate) {
+                    case '+':
+                        document.querySelector('#result').value = parseFloat(num1) + parseFloat(num2);
+                        break;
+                    case '-':
+                        document.querySelector('#result').value = parseFloat(num1) - parseFloat(num2);
+                        break;
+                    case '*':
+                        document.querySelector('#result').value = parseFloat(num1) * parseFloat(num2);
+                        break;
+                    case '/':
+                        document.querySelector('#result').value = parseFloat(num1) / parseFloat(num2);
+                        break;
+                }
+            };
+        };
+    </script>
+</head>
+
+<body>
+    <input type="text" id="num1" />
+    <select id="operate">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+    </select>
+    <input type="text" id="num2" />
+    <input type="button" value=" = " id="btn" />
+    <input type="text" id="result" />
+</body>
+
+</html>

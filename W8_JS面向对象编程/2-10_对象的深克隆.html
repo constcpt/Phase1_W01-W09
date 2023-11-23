@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-10_对象的深克隆</title>
+</head>
+<body>
+    <script>
+        var obj1 = {
+            a: 1,
+            b: 2,
+            c: [33, 44, {
+                m: 55,
+                n: 66,
+                p: [77, 88]
+            }]
+        };
+
+        // 深克隆实现（老师代码）
+        // function deepClone(o) {
+        //     // 要判断o是对象还是数组
+        //     if (Array.isArray(o)) {
+        //         // 数组
+        //         var result = [];
+        //         for (var i = 0; i < o.length; i++) {
+        //             result.push(deepClone(o[i]));
+        //         }
+        //     } else if (typeof o == 'object') {
+        //         // 对象
+        //         var result = {};
+        //         for (var k in o) {
+        //             result[k] = deepClone(o[k]);
+        //         }
+        //     } else {
+        //         // 基本类型值
+        //         var result = o;
+        //     }
+        //     return result;
+        // }
+
+        // 实现对象深克隆函数 deepClone （结合chatGPT与前端面试中深克隆的代码实现）
+        function simpleDeepClone(obj) {
+            // 首先判断是否是简单数据类型或者null
+            if (typeof obj !== 'object' || obj == null) {
+                // 如果是，直接返回
+                return obj;
+            }
+
+            // 初始化返回结果，判断是数组还是对象
+            let result = Array.isArray(obj) ? [] : {}; // 三元表达式，作用是判断 obj 是数组还是对象，从而创建空的数组或对象。Array.isArray() 方法用于确定传递的值是否是一个 Array，返回一个布尔值。检测是否是数组使用 typeof 会返回 object，所以需要使用 Array.isArray() 方法。
+
+            // 遍历对象的key
+            for (let key in obj) {
+                // 如果key是对象的自有属性
+                if (obj.hasOwnProperty(key)) { // hasOwnProperty() 方法会返回一个布尔值，指示对象自身属性中是否具有指定的属性（也就是是否有指定的键），而不是来自对象的原型链上的属性。
+                    // 递归调用深克隆函数
+                    result[key] = simpleDeepClone(obj[key]);
+                }
+            }
+
+            return result;
+        }
+        // 注意：该对象深克隆函数只适用于不需要处理像函数、日期、正则表达式、Symbol、undefined以及循环引用等特殊情况
+
+        var obj2 = simpleDeepClone(obj1);
+        console.log(obj2); // {a: 1, b: 2, c: Array(3)}，与 obj1 一样
+        console.log(obj1.c == obj2.c); // false，说明 obj1.c 和 obj2.c 不是同一个对象
+
+
+        obj1.c.push(99);
+        obj1.c[2].p.push(999);
+        
+        console.log(obj1);
+        console.log(obj2); // {a: 1, b: 2, c: Array(3)}，obj2 不变，因为深克隆没有“藕断丝连”的现象
+    </script>
+</body>
+</html>

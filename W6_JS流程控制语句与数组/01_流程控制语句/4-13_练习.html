@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-13_练习</title>
+</head>
+
+<body>
+    <script>
+        // 方法一 from chatGPT
+        // for (let i = 100; i < 1000; i++) {
+        //     let hundreds = Math.floor(i / 100);
+        //     let tens = Math.floor(i % 100 / 10);
+        //     let ones = i % 10;
+        //     if (ones > hundreds && hundreds > tens) {
+        //         let sum = ones + tens + hundreds;
+        //         let product = ones * tens * hundreds;
+        //         if (sum === product) {
+        //             console.log(i);
+        //         }
+        //     }
+        // }
+
+        //方法二
+        // for (var i = 100; i < 1000; i++) {
+        //     // 转为字符串
+        //     var i_str = String(i);
+        //     // 拆位
+        //     var a = i_str.charAt(0);
+        //     var b = i_str.charAt(1);
+        //     var c = i_str.charAt(2);
+        //     //字符串相加，加号会变为连字符，所以须转位数字类型值 
+        //     if (c > a && a > b && Number(a) + Number(b) + Number(c) == a * b * c) {
+        //         // 输出结果
+        //         console.log(i_str);
+        //     }
+        // }
+
+        // 方法三
+        for (var hundreds = 1; hundreds <= 9; hundreds++) {
+            for (var tens = 0; tens <= 9; tens++) {
+                for (var ones = 0; ones <= 9; ones++) {
+                    if (ones > hundreds && hundreds > tens && hundreds + tens + ones == hundreds * tens * ones) {
+                        console.log(hundreds * 100 + tens * 10 + ones);
+                    }
+
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

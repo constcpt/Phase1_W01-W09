@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5-1_05检查一个对象是否含有某个属性使用hasOwnProperty和in</title>
+</head>
+<body>
+    <script>
+        function People(name, age, sex) {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+        }
+        // 往原型上添加nationality属性
+        People.prototype.nationality = '中国';
+
+        // 实例化
+        var xiaoming = new People('小明', 12, '男');
+
+        console.log(xiaoming.hasOwnProperty('name')); // true
+        console.log(xiaoming.hasOwnProperty('age')); // true
+        console.log(xiaoming.hasOwnProperty('sex')); // true
+        console.log(xiaoming.hasOwnProperty('nationality')); // false，原型上的属性不是实例自身的属性，所以返回false
+
+        console.log('name' in xiaoming); // true
+        console.log('age' in xiaoming); // true
+        console.log('sex' in xiaoming); // true
+        console.log('nationality' in xiaoming); // true，in操作符会检查实例自身和原型上的属性，只要有就返回true
+        console.log('asdfasdf' in xiaoming); // false，实例自身和原型上都没有该属性，返回false
+
+        // 总结：
+        // 1. hasOwnProperty()方法只检查实例自身的属性，不检查原型上的属性
+        // 2. in操作符会检查实例自身和原型上的属性，只要有就返回true
+    </script>
+</body>
+</html>

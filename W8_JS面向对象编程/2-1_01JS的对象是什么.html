@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-1_JS的对象是什么</title>
+</head>
+<body>
+    <script>
+        var xiaoming = {
+            name: '小明',
+            age: 12,
+            sex: '男',
+            hobbies: ['足球', '编程'],
+            'favorite-book' : '舒克和贝塔'
+        };
+
+        console.log(xiaoming['name']);
+        console.log(xiaoming.name);
+        console.log(xiaoming['age']);
+        console.log(xiaoming['sex']);
+        console.log(xiaoming.hobbies);
+        console.log(xiaoming['favorite-book']);
+        // console.log(xiaoming.'favorite-book'); // 报错，不能用点语法访问带有特殊字符的属性
+
+        var favoriteBook = 'favorite-book';
+        console.log(xiaoming[favoriteBook]);
+        // console.log(xiaoming.favoriteBook); // undefined，因为xiaoming没有favoriteBook这个属性
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5-2_01延时器函数setTimeout及取消</title>
+</head>
+
+<body>
+    <button id="btn1">2秒后弹出你好</button>
+    <button id="btn2">取消弹出</button>
+
+    <script>
+        var btn1 = document.getElementById('btn1');
+        var btn2 = document.getElementById('btn2');
+        var timeoutId;
+        
+        btn1.addEventListener('click', function() {
+            timeoutId = setTimeout(function () {
+                alert('你好');
+            }, 2000);
+        });
+        
+        btn2.addEventListener('click', function() {
+            clearTimeout(timeoutId);
+        });
+
+    </script>
+</body>
+
+</html>

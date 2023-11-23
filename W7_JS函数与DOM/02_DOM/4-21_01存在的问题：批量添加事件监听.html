@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-21_01存在的问题：批量添加事件监听</title>
+</head>
+
+<body>
+    <ul id="list">
+        <li>列表项</li>
+        <li>列表项</li>
+        <li>列表项</li>
+        <li>列表项</li>
+        <li>列表项</li>
+        <li>列表项</li>
+        <li>列表项</li>
+        <li>列表项</li>
+        <li>列表项</li>
+        <li>列表项</li>
+        <li>列表项</li>
+        <li>列表项</li>
+        <li>列表项</li>
+        <li>列表项</li>
+        <li>列表项</li>
+        <li>列表项</li>
+        <li>列表项</li>
+        <li>列表项</li>
+        <li>列表项</li>
+        <li>列表项</li>
+    </ul>
+
+    <script>
+        //目标：给所有的li元素添加点击事件监听，点击时，改变字体颜色为红色
+
+        var oList = document.getElementById('list');
+        var lis = oList.getElementsByTagName('li');
+
+        // 书写循环语句，批量给元素添加监听
+
+        // 典型错误写法一
+        // for (var i = 0; i < lis.length; i++) {
+        //     lis[i].onclick = function () {
+        //         lis[i].style.color = 'red'; // 这里的i是全局变量，当点击li元素触发该事件函数时，i的值已经是lis.length = 20了，所以这里的lis[i]就是lis[20]，而lis[20]是不存在的，所以没有效果
+        //     };
+        // }
+        //典型错误写法二
+        // for (var i = 0; i < lis.length; i++) {
+        //     var index = i; // 尝试使用局部变量index来解决问题，但是在JS for循环中使用var创建的变量具有函数作用域（function scope），这意味着在函数内部声明的变量在整个函数内都是可见的。所以这里的index的值一直是lis.length-1，所以lis[index]就是lis[19]，而lis[19]是最后一个li元素，所以不论点击哪一个li元素都只有最后一个li元素的字体颜色变为了红色，其他的li元素没有效果
+        //     lis[i].onclick = function () {
+        //         lis[index].style.color = 'red';
+        //     };
+        // }
+
+        // 正确写法一
+        for (var i = 0; i < lis.length; i++) {
+            lis[i].onclick = function () {
+                // 在这个函数中，this表示点击的这个元素，this涉及函数上下文的相关知识，我们在“面向对象”课程中介绍
+                this.style.color = 'red';
+            };
+        }        
+        // 正确写法二
+        // for (var i = 0; i < lis.length; i++) {
+        //     let index = i; // 使用 var index  = i;不行，因为var index在这里具有函数全局作用域，所以在下面的函数中，index的值一直是lis.length-1，而使用let index = i;index就是局部变量，它具有块级作用域（block scope），可以确保每次循环都创建一个新的 index 变量，所以在下面的函数中，index的值就是当前循环的i的值
+        //     lis[i].onclick = function () {
+        //         lis[index].style.color = 'red'; // 因为闭包所以可以访问到index，且index的值是当前循环的i的值，因为let index = i;index就是局部变量，它具有块级作用域（block scope），可以确保每次循环都创建一个新的 index 变量
+        //     };
+        // }
+        // 正确写法三
+        // for (var i = 0; i < lis.length; i++) {
+        //     //之前学的 IIFE 立即执行函数表达式也可以实现将全局变量 i 的值赋给局部变量 index，从而解决闭包问题
+        //     (function (index) {
+        //         lis[i].onclick = function () {
+        //             lis[index].style.color = 'red';
+        //         };
+        //     })(i);
+        // }
+
+        // 上述批量添加事件监听存在的问题：
+        // 1. 每一个事件监听注册都会消耗一定的系统内存，而批量添加事件会导致监听数量太多，内存消耗会非常大
+        // 2. 每个 li 的事件处理函数都是不同的函数，这些函数本身也会占用内存
+        // 上述问题会导致页面性能下降，所以我们需要寻找更好的解决方案，那就是事件委托
+
+    </script>
+</body>
+
+</html>

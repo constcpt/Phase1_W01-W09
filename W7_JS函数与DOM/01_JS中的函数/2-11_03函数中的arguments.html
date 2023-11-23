@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // arguments是一个类数组对象，它包含了函数调用时传入的所有参数
+        // function fun() {
+        //     console.log(arguments); // [Arguments] { '0': 33, '1': 44, '2': 23, '3': 34 }
+        //     console.log(arguments.length); // 4
+        //     console.log(arguments[0]); // 33
+        //     console.log(arguments[1]); // 44
+        //     console.log(arguments[2]); // 23
+        //     console.log(arguments[3]); // 34
+        // }
+        // fun(33, 44, 23, 34);
+
+        // 通过 arguments 可以实现不管用户传入多少个实际参数，永远能够计算它们的和
+        function fun() {
+            var sum = 0;
+            for (var i = 0; i < arguments.length; i++) {
+                sum += arguments[i];
+            }
+            console.log('所有参数的和是' + sum);
+        }
+
+        fun(33, 44, 23, 34);
+        fun(44);
+        fun(-3, 4);
+    </script>
+</body>
+
+</html>

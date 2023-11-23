@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5-1_03原型链查找</title>
+</head>
+<body>
+    <script>
+        function People(name, age, sex) {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+        }
+        // 往原型上添加nationality属性
+        People.prototype.nationality = '中国';
+        var xiaoming = new People('小明', 18, '男');
+        console.log(xiaoming.nationality); // 中国 
+        console.log(xiaoming); // People {name: '小明', age: 18, sex: '男'}，并没有nationality属性
+
+        // 原型链查找：一个对象打点调用属性或方法时，如果该对象本身没有该属性或方法，就会去它的__proto__上找，如果__proto__上也没有，就去__proto__的__proto__上找，直到找到Object.prototype.__proto__为止
+
+        // 以上代码说明：当xiaoming打点调用nationality属性时，若它本身没有nationality属性，就去它的__proto__上找，也就是People.prototype上找，People.prototype上有nationality属性，所以打印出来是中国
+
+
+    </script>
+</body>
+</html>

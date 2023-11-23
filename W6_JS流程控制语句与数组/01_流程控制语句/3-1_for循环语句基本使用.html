@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-1_for循环语句基本使用</title>
+</head>
+
+<body>
+    <script>
+        // 输出1、2、3、4……10
+        // for (var i = 1; i <= 100; i++) {
+        //     console.log(i);
+        // }
+
+        // 输出18、14、10、……、-6
+        // for (var i = 18; i >= -6; i -= 4){
+        //     console.log(i);
+        // }
+
+        // 输出0、0.2、0.4、0.6、0.8、1
+        for (var i = 0; i <= 1; i += 0.2) {
+            console.log(Number(i.toFixed(1))); //因为 JS 使用了 IEEE754 二进制浮点数算术标准导致浮点数运算可能会产误差，这里就是 0.6 产生了误差。使用 toFixed() 方法保留指定的小数位数
+        }
+    </script>
+</body>
+
+</html>

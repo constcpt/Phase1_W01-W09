@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-4_00为什么需要清除浮动举例</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* div {
+            height: 100px;
+            margin-bottom: 10px;
+        } */
+        
+        p {
+            float: left;
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+            margin-right: 20px;
+        }
+
+        /* 实际效果并不是预想的两行两列的 4 个盒子，而是并排显示在一行的四个盒子 */
+        /* 为什么四个 p 盒子显示在了一行？因为两个父 div 盒子没有高度，也没有形成 BFC，当两个盒子的内容子元素都浮动时就不能形成两行了 */
+        /* 这就叫没有清除浮动，即浮动没有完完全全封闭在一个盒子当中 */
+        /* 那给 div 设置高度不就行了吗？但是盒子中的内容可能是动态的，不能确定盒子有多高，比方说放的是用户发的贴子，用户给出的评论留言 */
+    </style>
+</head>
+
+<body>
+    <div>
+        <p></p>
+        <p></p>
+    </div>
+    <div class="box2">
+        <p></p>
+        <p></p>
+    </div>
+</body>
+
+</html>

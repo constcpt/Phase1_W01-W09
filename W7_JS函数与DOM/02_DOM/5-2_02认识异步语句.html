@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5-2_02认识异步语句</title>
+</head>
+
+<body>
+    <script>
+        setTimeout(function () {
+            console.log('A');
+        }, 2000);
+
+        console.log('B');
+        // 先打印B，再打印A，因为异步语句不会阻塞后面的语句
+
+    </script>
+</body>
+
+</html>

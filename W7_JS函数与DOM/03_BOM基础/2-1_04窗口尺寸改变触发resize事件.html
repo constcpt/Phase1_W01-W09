@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-1_04resize事件</title>
+</head>
+<body>
+    <script>
+        // 监听窗口改变尺寸事件
+        // window.onresize = function () {
+        //     var root = document.documentElement;
+        //     console.log('窗口改变尺寸了', root.clientWidth, root.clientHeight);
+        // };
+
+        window.addEventListener("resize", function () {
+            console.log("当前窗口尺寸是：" + window.innerWidth + "x" + window.innerHeight);
+        })
+    </script>
+</body>
+</html>

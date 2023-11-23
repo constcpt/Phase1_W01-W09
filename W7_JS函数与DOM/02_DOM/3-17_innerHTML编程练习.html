@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-17_innerHTML编程练习</title>
+</head>
+<body>
+    <div>前端技术</div>
+	<div>IOS技术</div>
+	<div>安卓技术</div>
+	<div>JAVA技术</div>
+    <script>
+        var oDiv = document.getElementsByTagName('div');
+        for(var i = 0; i < oDiv.length; i++){
+            oDiv[i].innerHTML = '来慕课网学习最新的' + oDiv[i].innerHTML;
+        }
+    </script>
+</body>
+</html>

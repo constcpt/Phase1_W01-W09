@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-2_this指代规则1：对象打点调用它的方法函数，则函数中的this指代该对象</title>
+</head>
+<body>
+    <script>
+        // this 指代什么规则1：对象打点调用它的方法函数，则函数中的this指代该对象
+        function fn() {
+            console.log(this.a + this.b);
+        }
+        var obj = {
+            a: 66,
+            b: 33,
+            fn: fn
+        };
+        obj.fn(); // 99，this指代obj
+
+        var obj1 = {
+            a: 1,
+            b: 2,
+            fn: function () {
+                console.log(this.a + this.b);
+            }
+        };
+        var obj2 = {
+            a: 3,
+            b: 4,
+            fn: obj1.fn
+        };
+        obj2.fn(); // 7，this指代obj2
+
+        function outer() {
+            var a = 1;
+            var b = 2;
+            return {
+                a: 33,
+                b: 44,
+                fn: function () {
+                    console.log(this.a + this.b);
+                }
+            };
+        }
+        outer().fn(); // 77，this指代outer()返回的对象
+
+        function fun() {
+            console.log(this.a + this.b);
+        }
+        var obj3 = {
+            a: 1,
+            b: 2,
+            c: [{
+                a: 3,
+                b: 4,
+                fn: fun
+            }]
+        };
+        var a = 5;
+        obj3.c[0].fn(); // 7，this指代obj3.c[0]
+    </script>
+</body>
+</html>

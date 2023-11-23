@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-8_轮播图演示绝对定位的压盖遮罩用途</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .carousel {
+            /* 设置宽高，边框，居中 */
+            width: 650px;
+            height: 360px;
+            border: 1px solid #000;
+            margin: 40px auto;
+            /* 父相 */
+            position: relative;
+        }
+
+        /* btn 类描述按钮共性，leftbtn 和 rightbtn 描述每个按钮的个性 */
+        .carousel .btn {
+            /* a 标签是行内元素本无法设置宽高，但是绝对定位后的元素可以直接设置宽高，这让我想起了浮动的元素一定可以设置宽高，应该都是脱离了标准文档流的缘故 */
+            /* 当绝对定位元素没有设置left、top等方位属性时，浏览器会自动安排它的位置，一般会挨着前面元素往后布局。
+             * 在代码中，a标签挨着图片，因此会在图片右侧显示（图片右侧有位置，就在有位置的部分排布）。
+             * 这种自动排布的位置大多情况并不是我们想要的，而且可能不同的浏览器排布方式还不同，因此绝对定位元素一定要手动设置left、top等值，人为规定好它的位置。 */
+            /* 子绝 */
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            /* border: 1px solid #000; */
+            top: 50%;
+            margin-top: -20px;
+            text-decoration: none;
+            /* 设置边框为圆形，后面会详细介绍 */
+            border-radius: 50%;
+            /* 设置文字水平和垂直居中 */
+            text-align: center;
+            line-height: 40px;
+            /* 设置背景颜色，有半透明度 */
+            background: rgba(255, 255, 255, .5);
+            /* 让鼠标指上去的时候变成小手 */
+            cursor: pointer;
+            font-family: Consolas;
+            font-size: 26px;
+        }
+
+        .carousel .btn:hover {
+            background-color: gold;
+            color: white;
+        }
+
+        .carousel .leftbtn {
+            left: 10px;
+
+        }
+
+        .carousel .rightbtn {
+            right: 10px;
+        }
+        /* 以上是轮播图两个按钮的 CSS 设置，为什么这里两个按钮要用绝对定位做？因为有这两个按钮 “压盖” 轮播图的效果需求 */
+        /* 以下是轮播图上的小圆点的 CSS 设置，它同样有“压盖” 轮播图的效果需求，所以小圆点也要用到绝对定位来制作 */
+        .carousel ol {
+            position: absolute;
+            width: 150px;
+            height: 20px;
+            /* right: 20px; */
+            bottom: 20px;
+            list-style: none;
+            /* background-color: green; */
+            left: 50%;
+            margin-left: -75px;
+        }
+
+        .carousel ol li {
+            float: left;
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255, 255, 255, .5);
+            margin: 0 5px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        /* 此处是交集选择器，作用是选择具有 active 类的 li 标签 */
+        .carousel ol li.active {
+            background-color: gold;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- carousel 在网页中表示轮播图的意思 -->
+    <div class="carousel">
+        <img src="images/0.jpg" alt="">
+        <!-- 使用 a 标签来制作轮播图的左右按钮，让 href="#" 可以禁止链接刷新或跳转。同一个标签可以同时属于多个类，类名用空格隔开  -->
+        <a href="#" class="leftbtn btn">&lt;</a>
+        <!-- &lt; 和 &gt; 是大于号与小于号的转义字符 -->
+        <a href="#" class="rightbtn btn">&gt;</a>
+        <!-- 使用 ol 和 li 来制作轮播图上的小圆点 -->
+        <ol>
+            <li></li>
+            <!-- 之后会使用 JS 让 class="active" 挪给鼠标正在碰的 li，然后换图 -->
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ol>
+    </div>
+</body>
+
+</html>

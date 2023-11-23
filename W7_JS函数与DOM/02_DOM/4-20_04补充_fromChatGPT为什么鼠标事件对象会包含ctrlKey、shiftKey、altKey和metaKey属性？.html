@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-20_04补充_为什么鼠标事件对象会包含ctrlKey、shiftKey、altKey和metaKey属性？</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+    </style>
+</head>
+
+<body>
+  <!-- 为什么鼠标事件对象会包含ctrlKey、shiftKey、altKey和metaKey属性？ -->
+  <h1>带有修饰键的鼠标事件示例</h1>
+  <button id="myButton">点击我</button>
+  <p id="info"></p>
+
+  <script>
+    var button = document.getElementById('myButton');
+    var info = document.getElementById('info');
+
+    button.addEventListener('click', function(event) {
+      if (event.ctrlKey) {
+        info.textContent = '你按住了 Ctrl 键并点击了按钮。';
+      } else {
+        info.textContent = '你只点击了按钮。';
+      }
+    });
+  </script>
+</body>
+
+</html>

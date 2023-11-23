@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #box {
+        width: 100px;
+        height: 100px;
+        background-color: orange;
+        position: absolute;
+        top: 100px;
+        left: 100px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button id="btn">按我运动</button>
+    <div id="box"></div>
+
+    <script>
+      // 得到元素
+      var btn = document.getElementById("btn");
+      var box = document.getElementById("box");
+      // 标识量，指示当前盒子在左边还是右边
+      var pos = 1; // 1左边，2右边
+
+      // throttle 的作用是，让一个函数在一定时间内只执行一次
+      function throttle(fn, delay) {
+        var lock = true; // true 表示锁是打开的允许执行，false 表示锁是关闭的，不允许执行
+        return function () {
+          if (!lock) return;
+          fn.apply(this, arguments);
+          lock = false;
+          setTimeout(function () {
+            lock = true;
+          }, delay);
+        };
+      }
+
+      
+      var throttleFunc = throttle(function () {
+        box.style.transition = "all 2s linear 0s";
+        if (pos == 1) {
+          // 瞬间移动，但是由于有过渡，所以是动画
+          box.style.left = "1100px";
+          pos = 2;
+        } else if (pos == 2) {
+          // 瞬间移动，但是由于有过渡，所以是动画
+          box.style.left = "100px";
+          pos = 1;
+        }
+      }, 2000);
+
+      btn.addEventListener("click", throttleFunc);
+
+      //我感觉这种分开写的方式很绕，不如直接写在一起直观，但是这样写的好处是，可以把节流函数单独拿出来，以后可以直接复用
+    </script>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4-10_练习：使用onkeyup事件监听实现输入框字数检测</title>
+</head>
+
+<body>
+    <p>
+        字数限制在30字内，<span>您还可以输入<b>30</b> 字</span>
+    </p>
+    <textarea cols="50" rows="7" id="text"></textarea>
+    <script>
+        // 获取到文本域对象、字数变化元素、字数超过限制提示标签
+        var text = document.getElementById('text');
+        var span = document.querySelector('span');
+        // 自定义一个变量，接收可输入的总字数（30）
+        var total = 30;
+        // 给文本域绑定按键被松开的事件
+        text.onkeyup = function () {
+            // 获取文本域中的内容
+            var content = text.value;
+            // 获取文本域中的内容的长度
+            var len = content.length;
+            // 判断文本域中的内容的长度是否大于30
+            if (len > total) {
+                //如果可输入的字数小于0，span标签的内容设置为“已超出多少字”
+                span.innerHTML = '已超出<b>' + (len - total) + '</b>字';
+            }
+            else {
+                //如果可输入的字数大于0，span标签的内容设置为“您还可以输入多少字”
+                span.innerHTML = '您还可以输入<b>' + (total - len) + '</b>字';
+            }
+        };
+    </script>
+</body>
+
+</html>

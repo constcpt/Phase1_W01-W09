@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5-4.通过原型链实现继承</title>
+</head>
+<body>
+    <script>
+        // 父类 People
+        function People(name, age, sex) {
+            this.name = name;
+            this.age  = age;
+            this.sex = sex;
+        }
+        People.prototype.sayHello = function () {
+            console.log('你好，我是' + this.name + '我今年' + this.age + '岁了');
+        };
+        People.prototype.sleep = function () {
+            console.log(this.name + '开始睡觉zzzzzzz');
+        };
+
+        // 子类 Student
+        function Student(name, age, sex, school, studentNumber) {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+            this.school = school;
+            this.studentNumber = studentNumber;
+        };
+        // 关键语句，实现继承
+        Student.prototype = new People(); // 将Student的原型指向People的实例对象，通过原型链实现了继承
+        Student.prototype.study = function () {
+            console.log(this.name + '正在学习');
+        };
+        Student.prototype.exam = function () {
+            console.log(this.name + '正在考试');
+        };
+        // 子类可以重写父类的同名方法，术语叫做override
+        Student.prototype.sayHello = function () {
+            console.log('你好，我是' + this.name + '我今年' + this.age + '岁了，我在' + this.school + '上学，我的学号是' + this.studentNumber);
+        };
+
+        // 实例化
+        var hanMeiMei = new Student('韩梅梅', 18, '女', '清华大学', '2018001');
+        hanMeiMei.study(); // 韩梅梅正在学习
+        hanMeiMei.exam(); // 韩梅梅正在考试
+        hanMeiMei.sayHello(); // 你好，我是韩梅梅我今年18岁了，我在清华大学上学，我的学号是2018001
+        hanMeiMei.sleep(); // 韩梅梅开始睡觉zzzzzzz
+
+        var xiaoZhang = new People('小张', 20, '男');
+        xiaoZhang.sayHello(); // 你好，我是小张我今年20岁了
+
+        // Student 类的实例对象可以访问 People 类的原型对象中的方法，说明实现了继承（子类拥有父类的全部属性和方法，同时子类还能拓展自己特有的属性和方法）
+    </script>
+</body>
+</html>

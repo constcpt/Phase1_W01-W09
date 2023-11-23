@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-21_练习：动画实现心动效果</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .box1 {
+            width: 88px;
+            height: 81px;
+            position: relative;
+            background-image: url(images/xin.png);
+            margin: 40px auto;
+        }
+        .box2 {
+            width: 81px;
+            height: 81px;
+            position: absolute;
+            background-image: url(images/xin.png);
+            top: 0;
+            left: 0;
+            animation: xin 0.5s linear 0s infinite;
+        }
+        @keyframes xin {
+            form {
+                transform: scale(1);
+                opacity: 1;
+            }
+ 
+            to {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">
+        <div class="box2"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-23_练习</title>
+</head>
+
+<body>
+    <script>
+        //使用arguments对象获取到函数参数（任意一组数）的平均值，并且把得到的值转成整数，输出出来！
+
+        function getAverage() {
+            var sum = 0;
+            for (var i = 0; i < arguments.length; i++) {
+                sum += arguments[i];
+            }
+            return Math.round(sum / arguments.length); //Math.round()方法返回一个数四舍五入后最接近的整数。
+        }
+        alert(getAverage(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3-19_使用className或classList属性一次性修改多个样式</title>
+    <style>
+      .oneBox {
+        width: 100px;
+        height: 100px;
+      }
+      .fixBox {
+        background-color: blue;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="myDiv"></div>
+    <script>
+      var myDiv = document.getElementById("myDiv");
+      // function addClass(element, value) {
+      //   if (element.className == "") {
+      //     element.className = value;
+      //   } else {
+      //     newClassName = element.className;
+      //     newClassName += " ";
+      //     newClassName += value;
+      //     element.className = newClassName;
+      //   }
+      // }
+      // addClass(myDiv, "fixBox");
+
+      // myDiv.className += " fixBox"; // 这样写比上述函数更简洁，但是如果className原本就是空，那么新的类名前面会多一个空格
+
+      myDiv.classList.add("fixBox"); // 使用classList属性，比上述方法更简洁，且不会出现上述问题
+    </script>
+  </body>
+</html>

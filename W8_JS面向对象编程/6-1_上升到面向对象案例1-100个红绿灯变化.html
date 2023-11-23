@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6-1_上升到面向对象案例1-100个红绿灯变化</title>
+    <style>
+        #box img {
+            width: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script>
+        /*
+            定义红绿灯类 TrafficLight
+            属性：颜色 color，一开始都是红色
+            方法：初始化 init，绑定监听 bindEvent，改变颜色 changeColor。注意方法都是原型方法
+        */
+        function TrafficLight() {
+            // 知识回顾：
+            // 构造函数中的 this 指的是实例对象，即 new 出来的对象，而不是构造函数本身
+            // 定义在原型对象上的方法，可以被所有实例对象共享
+
+            // 1 红灯 2 绿灯 3 黄灯
+            this.color = 1;
+            this.init(); // call the init method on the current instance of the TrafficLight object. do not forget to use the this keyword
+            this.bindEvent();
+            /* Don not miss `this` keyword here.
+                you should write this.init() because init() is a method of the TrafficLight object and you want to call it on the current instance of the object. By using this, you are referring to the current instance of the object and calling the init() method on that instance. If you don't use this, you will be calling a standalone function named init() instead of the method of the object.
+            */
+
+            /*
+                In fact, it is a common practice to call prototype methods from within the constructor function to perform initialization tasks. This allows you to define the initialization logic in a separate method and reuse it across multiple instances of the object.
+
+                In the code snippet you provided, the init() and bindEvent() functions are prototype methods of the TrafficLight object, and they are called from within the constructor function to perform initialization tasks.
+            */
+                
+        }
+
+        // init 方法：初始化干三件事，创建  TrafficLight 对象对应的 DOM 元素（img）属性，设置 src 属性，插入到页面中
+        TrafficLight.prototype.init = function () {
+            // this 指什么？
+            // this 指的是调用 init 方法的 TrafficLight 对象
+            this.domElement = document.createElement('img');
+            this.domElement.src = 'images/' + this.color + '.jpg';
+            box.appendChild(this.domElement);
+        };
+
+        // bindEvent 方法：给 TrafficLight 对象的 DOM 元素属性绑定点击事件，点击时调用 changeColor 方法
+        TrafficLight.prototype.bindEvent = function () {
+            // this 指什么？this 指的是调用 bindEvent 方法的 TrafficLight 对象
+            // 为什么要用 self 保存 this（备份上下文）？
+            // 因为在事件处理函数中，this 指向的会是事件的触发者，即 DOM 元素，而不是 TrafficLight 对象，而我们希望在事件处理函数中使用 TrafficLight 对象的changeColor方法，所以需要用 self 保存 this，回顾备份上下文知识点代码可见3-9
+            var self = this; // backup the this context of the TrafficLight object
+            this.domElement.addEventListener('click', function () {
+                self.changeColor(); // use the backup this context to call the changeColor method of the TrafficLight object
+            });
+            /* explain the need to write var self = this in my code snippet.
+
+                When you define a function inside another function, the `this` keyword inside the inner function refers to the function itself, not the outer function. In this case, the inner function is the event listener function that is passed to `addEventListener()`.
+
+                By assigning `this` to `self`, you are creating a backup of the `this` context of the `TrafficLight` object. This allows you to access the `changeColor()` method of the `TrafficLight` object inside the event listener function, even though the `this` context inside the event listener function is different.
+
+            */
+        };
+
+        // changeColor 方法：改变 TrafficLight 对象的颜色属性，对应的改变 DOM 元素（img）的 src 属性
+        TrafficLight.prototype.changeColor = function () {
+            // this 指什么？this 指的是调用 changeColor 方法的 TrafficLight 对象
+            this.color++;
+            if (this.color === 4) {
+                this.color = 1;
+            }
+            this.domElement.src = 'images/' + this.color + '.jpg';
+        };
+
+        var box = document.getElementById('box');
+        // 创建 100 个红绿灯对象
+        for (var i = 0; i < 100; i++) {
+            new TrafficLight();
+        }
+
+
+        // 在示例代码中，在构造函数中调用了原型对象上定义的方法 init() 和 bindEvent()。在构造函数中调用原型方法的情况，这是常见且合理的
+        // 1.首先在 JavaScript 中，将方法定义在原型对象上是一种常见的做法，这样可以避免在每个实例对象中都创建一份方法的副本，从而节省内存。
+        // 2.其次在构造函数中调用原型对象上定义的方法，这样可以在创建实例对象时自动执行一些初始化操作和绑定事件，从而简化代码。
+    </script>
+</body>
+
+</html>

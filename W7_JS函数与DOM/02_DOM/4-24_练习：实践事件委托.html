@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-24_练习：实践事件委托</title>
+</head>
+
+<body>
+    <input type="text" class="textInput">
+    <button id="btn">添加</button>
+    <ul class="list">
+        <li class="li">吃饭</li>
+        <li class="li">睡觉</li>
+        <li class="li">打豆豆</li>
+    </ul>
+    <script>
+        // 目标：页面上有一个记录待办事项的列表，在输入框中输入内容之后，点击添加按钮，可以将输入的内容添加到列表里。如果事情完成了，点击此项可以从列表里移除
+        // 遇到的问题：发现新添加的列表项没有点击移除的功能，需要使用什么方法才能完成这个效果呢？
+
+
+        // 1.获取元素
+        var textInput = document.querySelector(".textInput");
+        var btn = document.querySelector("#btn");
+        var list = document.querySelector(".list");
+        var li = document.querySelectorAll(".li");
+
+
+        // 2.给元素绑定事件
+        // 给btn绑定点击事件
+        btn.addEventListener("click", function () {
+            var li = document.createElement("li");
+            li.className = "li";
+            li.innerHTML = textInput.value;
+            list.appendChild(li);
+            textInput.value = "";
+        });
+
+        
+        // 3.使用事件委托实现点击移除
+        // 方法一：
+        // 使用 tagName 属性来判断是否是 li 元素
+        list.addEventListener("click",function (e) {
+            // tagName 属性返回元素的标签名，返回值是大写字母，常用于在事件处理程序中检查触发事件的元素类型
+            if (e.target.tagName === "LI") {
+                list.removeChild(e.target)
+            }
+        });
+
+        // 方法二：
+        // 使用 matches(selector) 方法来判断是否是 li 元素
+        // list.addEventListener("click",function (e) {
+        //     if (e.target.matches("li")) {
+        //         list.removeChild(e.target)
+        //     }
+        // });
+
+        
+        // 不使用事件委托，而是给每个 li 绑定点击事件（不推荐）原因是：如果列表项很多，那么就需要给每个列表项都绑定事件，这样会造成性能问题
+        // for (var i = 0; i < li.length; i++) {
+        //     li[i].onclick = function () {
+        //         list.removeChild(this)
+        //     };
+        // }
+        // btn.onclick = function () {
+        //     var li = document.createElement("li");
+        //     li.className = "li";
+        //     li.innerHTML = textInput.value;
+        //     li.onclick = function () {
+        //         list.removeChild(this)
+        //     };
+        //     list.appendChild(li);
+        //     textInput.value = "";
+        // };
+
+    </script>
+</body>
+
+</html>

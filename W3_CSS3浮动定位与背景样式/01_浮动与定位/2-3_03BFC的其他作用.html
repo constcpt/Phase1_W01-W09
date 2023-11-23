@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-3_03BFC的其他作用</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        p {
+            width: 200px;
+            height: 200px;
+            background-color: orange;
+            margin: 50px;
+            /* overflow: hidden; */
+            /* 注意若p标签设置了overflow:hidden；形成了BFC，针对的是p标签里面的元素margin不会塌陷，但是并不会影响p标签自身，所以p标签的margin依然会塌陷。 */
+        }
+
+        div {
+            overflow: hidden;
+            /* 设置了 overflow: hidden; 塌陷现象就没有了 */
+            /* 套个div设置overflow:hidden;形成BFC，也是针对div里面的元素margin不会塌陷，而此时p标签作为div的子元素，处于BFC里面，所以p标签的margin不会塌陷。 */
+        }
+        
+        .s1{
+            float: left;
+            width: 300px;
+            height: 300px;
+            background-color: red;
+        }
+        
+        .s2{
+            /* float: left; */
+            /* 要设置并排就要都设置浮动，绝对不能一个盒子浮动另一个盒子不浮动，尽管设置  overflow: hidden; 经浏览器渲染也能形成并排，但是不符合规范没有实战意义*/
+            overflow: hidden;
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <p></p>
+    </div>
+    <div>
+        <p></p>
+    </div>
+    
+    <section class="s1"></section>
+    <section class="s2"></section>
+</body>
+
+</html>

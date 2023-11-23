@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5-2_02方法要写到prototype上</title>
+</head>
+<body>
+    <script>
+        function People(name, age, sex) {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+        }
+        // 把方法写在原型上
+        People.prototype.sayHello = function () {
+            console.log('你好，我是' + this.name + '我今年' + this.age + '岁了');
+        };
+        People.prototype.growup = function () {
+            this.age ++;
+        };
+
+        var xiaoming = new People('小明', 12, '男');
+        var xiaohong = new People('小红', 11, '女');
+
+        xiaoming.sayHello(); // 你好，我是小明我今年12岁了
+        xiaohong.sayHello(); // 你好，我是小红我今年11岁了
+
+        xiaoming.growup();
+        xiaoming.sayHello(); // 你好，我是小明我今年13岁了
+
+        console.log(xiaoming.sayHello === xiaohong.sayHello); // true
+        // 以上代码说明：如果将方法定义在构造函数的原型对象中，那么每个实例对象访问的方法函数都是内存中的同一个函数，和将方法定义在构造函数中相比，不影响实例对象的访问，又节省了内存。
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-5_冒泡排序</title>
+</head>
+
+<body>
+    <script>
+        // 冒泡排序，从小到大排序
+        var arr = [6, 2, 9, 3, 8, 1, 45, 23, 45, 49];
+        var isSort;
+        // 一趟一趟比较，一趟运一个大元素到数组尾部确定其最终位置，数组长度是6，那么就要比较5趟
+        for (var i = 0; i < arr.length - 1; i++) {
+            isSort = false;
+            // 内层循环负责两两比较
+            for (var j = 0; j < arr.length - 1 - i; j++) {
+                // 判断项的大小
+                if (arr[j] > arr[j + 1]) {
+                    // 这一项比下一项大，那么就要交换两个变量的位置
+                    var temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                    isSort = true;
+                }
+            }
+            if (isSort === false) {
+                break;
+            }
+        }
+
+        // // 从大到小排序
+        // for (var i = 0; i < arr.length - 1; i++) {
+        //     for (var j = 0; j < arr.length - 1 - i; j++) {
+        //         //从小到大排序的代码，只需要把大于号改成小于号即可，这样每一轮比较都会运一个小元素到数组的尾部确定其最终位置
+        //         if (arr[j] < arr[j + 1]) {
+        //             var temp = arr[j];
+        //             arr[j] = arr[j + 1];
+        //             arr[j + 1] = temp;
+        //         }
+        //     }
+        // }
+
+        console.log(arr);
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8-8_寄生组合式继承</title>
+</head>
+
+<body>
+    <script>
+        // 这个函数接收两个参数，subType是子类的构造函数，superType是父类的构造函数
+        function inheritPrototype(subType, superType) {
+            subType.prototype = Object.create(superType.prototype);
+            subType.prototype.constructor = subType; // 修正constructor指向
+        }
+
+        // 父类
+        function People(name, sex, age) {
+            this.name = name;
+            this.sex = sex;
+            this.age = age;
+        }
+        People.prototype.sayHello = function () {
+            console.log('你好，我是' + this.name + '今年' + this.age + '岁了');
+        }
+        People.prototype.sleep = function () {
+            console.log(this.name + '正在睡觉');
+        }
+
+        // 子类
+        function Student(name, sex, age, school, sid) {
+            // 借助构造函数
+            People.call(this, name, sex, age);
+            this.school = school;
+            this.sid = sid;
+        }
+        // 调用我们自己编写的inheritPrototype函数，这个函数可以让Student类的prototype指向“以People.prototype为原型的一个新对象”
+        inheritPrototype(Student, People);
+        // Student.prototype = Object.create(People.prototype);
+        // Student.prototype.constructor = Student;
+         
+        Student.prototype.exam = function() {
+            console.log(this.name + '正在考试');
+        };
+        Student.prototype.sayHello = function() {
+            console.log('敬礼！你好，我是' + this.name + '今年' + this.age + '岁了，我是' + this.school + '学校的学生');
+        };
+        
+        var xiaoming = new Student('小明', '男', 12, '小慕学校', 100666);
+        xiaoming.sleep(); // 小明正在睡觉
+        xiaoming.exam(); // 小明正在考试
+        xiaoming.sayHello(); // 敬礼！你好，我是小明今年12岁了，我是小慕学校学校的学生
+
+        console.log(xiaoming instanceof Student); // true
+        console.log(xiaoming instanceof People); // true
+        console.log(xiaoming.constructor === Student); // true。通过Object.create()创建的对象，其constructor属性指向的是父类的构造函数，在这里就是People，但是我们希望它指向子类的构造函数，在这里就是Student，所以需要在inheritPrototype函数中添加一行代码，修正constructor指向
+        console.log(xiaoming.constructor === People); // false
+
+        //寄生组合式继承，组合指的是将借用构造函数和原型链的技术组合到一起使用，而寄生指的是创建一个仅用于封装继承过程的函数，这个函数在内部以某种方式来增强对象，最后再像真的是它做了所有工作一样返回对象。
+        //它相较于组合式继承的优点：不必为了指定子类型的原型而调用超类型的构造函数，解决了组合式继承中两次调用超类型构造函数的问题，避免了组合式继承的缺点。
+
+        // 之后学习了ES6的 class 和 extends关键字，其本质也是寄生组合式继承，写起来更简洁，方便易于理解
+    </script>
+</body>
+
+</html>

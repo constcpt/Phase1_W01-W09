@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5新增的表单控件</title>
+</head>
+
+<body>
+    <form action="">
+        <p>
+            颜色选择控件：<input type="color">
+        </p>
+        <p>
+            日期选择控件：<input type="date">
+        </p>
+        <p>
+            时间选择控件：<input type="time">
+        </p>
+        <p>
+            <!-- 当使用电子邮件输入控件在表单标签中时，点击提交表单，可以自动检验输入的内容是否包含 @ -->
+            电子邮件：<input type="email">
+        </p>
+        <p>
+            <!-- 在表单标签中为普通单行文本框控件增加 required 属性，点击提交表单，可以自动检验输入的内容是否为空 -->
+            必填：<input type="text" required>
+        </p>
+        <p>
+            数字：<input type="number" min="10" max="20">
+        </p>
+        <p>
+            拖拽条：<input type="range" min="10" max="20">
+        </p>
+        <p>
+            搜索框：<input type="search">
+        </p>
+        <p>
+            <!-- 可以检验填入的内容是否符合网址规范 -->
+            网址输入框：<input type="url">
+        </p>
+        <p>
+            省份：<input type="text" list="province-list">
+            <datalist id="province-list">
+                <option value="山西">
+                <option value="山东">
+                <option value="广西">
+                <option value="广东">
+                <option value="湖南">
+                <option value="湖北">
+                <option value="河南">
+                <option value="河北">
+            </datalist>
+        </p>
+        <p><input type="submit" value="submit"></p>
+    </form>
+
+</body>
+
+</html>

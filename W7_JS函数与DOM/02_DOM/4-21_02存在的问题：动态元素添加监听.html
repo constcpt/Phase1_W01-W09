@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-21_02存在的问题：动态元素添加监听</title>
+</head>
+
+<body>
+    <button id="btn">按我添加新的li列表项</button>
+    <ul id="list"></ul>
+
+    <script>
+        var oBtn = document.getElementById('btn');
+        var oList = document.getElementById('list');
+        var lis = oList.getElementsByTagName('li');
+
+        // 按钮的点击事件
+        oBtn.onclick = function () {
+            // 创建一个新的li列表项，孤儿节点
+            var oLi = document.createElement('li');
+            oLi.innerHTML = '我是列表项';
+            // 上树
+            oList.appendChild(oLi);
+            // 给新创建的这个li节点添加onclick事件监听
+            oLi.onclick = function () {
+                this.style.color = 'red';
+            };
+        };
+
+        // 上述动态元素添加事件监听方式存在的问题：
+        // 1. 为确保新添加的元素具有相同的事件处理功能，需为每个新元素显式添加事件监听器，不能自动获得事件监听
+        // 2. 大量事件监听、事件处理函数都会产生大量内存消耗
+        // 上述问题会导致页面性能下降，因此需要使用事件委托来解决这些问题
+    </script>
+</body>
+
+</html>

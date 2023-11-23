@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5-2_01验证每个实例的方法函数不是内存中的同一个函数</title>
+</head>
+<body>
+    <script>
+        function People() {
+            this.sayHello = function () {
+            };
+        }
+        var xiaoming = new People();
+        var xiaohong = new People();
+        var xiaogang = new People();
+
+        console.log(xiaoming.sayHello === xiaohong.sayHello); // false，说明
+
+        //以上代码说明：如果将方法定义在构造函数中，那么每个实例的方法函数都是内存中的不同函数，造成了内存的浪费。
+
+        //解决方法：将方法定义在构造函数的原型对象中。
+    </script>
+</body>
+</html>

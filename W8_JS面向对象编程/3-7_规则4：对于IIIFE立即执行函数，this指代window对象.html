@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-7_规则4：对于IIIFE立即执行函数，this指代window对象</title>
+</head>
+<body>
+    <script>
+        // this 指代什么规则4：对于 IIIFE (inmediately invoked function expression) 立即执行函数，this 指代 window 对象
+
+        // 经典面试题
+        var a = 1;
+        var obj = {
+            a: 2,
+            fun: (function () { // 因为 fun 属性的值是一个立即执行函数，会立即执行，该 IIFE 又返回了一个匿名函数，所以最终 fun 属性的值是一个匿名函数
+                var a = this.a; // this 指代 window 对象，所以 a = window.a = 1，适用于规则4
+                return function () {
+                    // 因为闭包的原因，这里的 a 会先从自己的作用域中找，找不到再从上一级作用域中找，所以这里的第一个 a == 1
+                    console.log(a + this.a);
+                }
+            })()
+        };
+        obj.fun(); // this.a 的 this 指代 obj 对象，所以 this.a == 2，适用于规则1。1 + 2 = 3，所以输出 3
+    </script>
+</body>
+</html>

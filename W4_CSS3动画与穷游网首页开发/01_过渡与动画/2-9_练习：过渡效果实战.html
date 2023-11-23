@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            width: 1200px;
+            /* 设置盒子形成 BFC  */
+            overflow: hidden;
+            margin: 40px auto;
+            position: relative;
+        }
+        .box img {
+            /* <img> 标签是一个内联元素，它本身并没有宽度和高度。因此它不能使用 margin:0 auto; 进行水平居中对齐。可以先转成块级元素 */
+            display: block;
+            margin: 0 auto;
+        }
+        .box p {
+            position: absolute;
+            width: 270px;
+            height: 50px;
+            line-height: 50px;
+            padding-left: 30px;
+            left: 50%;
+            margin-left: -150px;
+            top: 240px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            transition: top 0.1s linear 0s;
+        }
+        .box:hover p {
+            top: 190px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <img src="images/duck.png" alt="">
+        <p>这是一支小黄鸭</p>
+    </div>
+</body>
+</html>

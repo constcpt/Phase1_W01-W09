@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-4_04穷举法举例：寻找全部水仙花数</title>
+</head>
+
+<body>
+    <script>
+        // 寻找水仙花数
+        for (var i = 100; i < 1000; i++) {
+            // 水仙花数要拆数位
+            // a、b、c分别表示百位、十位、个位
+            var i_str = i.toString();
+            var a = i_str.charAt(0);
+            var b = i_str.charAt(1);
+            var c = i_str.charAt(2);
+            // console.log(a, b, c); // 在 console.log() 语句中添加逗号写多个变量，表示在一行打印这三个值并用空格隔开
+            
+            // 进行数学计算时没有必要把字符类型a b c转换成数字类型，因为存在隐式转换。除了加法运算要转，是为避免错用了 + 的连字符功能
+            if (Math.pow(a, 3) + Math.pow(b, 3) + Math.pow(c, 3) == i) {
+                console.log(i);
+            }
+        }
+    </script>
+</body>
+
+</html>

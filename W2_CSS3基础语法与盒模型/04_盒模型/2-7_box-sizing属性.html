@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-7_box-sizing属性</title>
+    <style>
+        .box {
+            box-sizing: border-box;
+            /* 如果不写上句 box-sizing: border-box; 根据上一节盒模型计算的内容，box 盒子实际占据的宽度高度会是 240px */
+            /* 添加了 box-sizing: border-box; 盒子的 width 和 height 就真的表示盒子实际占据的宽度和高度，即 padding 和 border 会“内缩”而不是“外扩” */
+            width: 200px;
+            height: 200px;
+            border: 10px solid #000;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-30_习题</title>
+    <style>
+        /* 当鼠标悬停在输入框上时，输入框的边框颜色变为红色，用到动态伪类选择器：hover */
+        input:hover{
+            border: 1px solid red;
+        }
+        /* 给用户名输入框设置样式，当焦点在该输入框上时，背景颜色变为橘色，用到动态伪类选择器 :focus 和属性选择器 input[type="text"] */
+        input[type="text"]:focus{
+            background-color: orange;
+        }
+        /* 给密码输入框设置样式，当焦点在该输入框上时，背景颜色变为黄色，用到动态伪类选择器 :focus 和属性选择器属性选择器 input[type="password"] */
+        input[type="password"]:focus {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+        <p>
+            用户名：<input type="text">
+        </p>
+        <p>
+            密码：<input type="password">
+        </p>
+    </form>
+</body>
+</html>

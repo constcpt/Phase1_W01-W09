@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6-4_动画效果开发3 - 淡入淡出轮播图特效</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .carousel {
+            /* 设置宽高和图片大小保持一致，再设置居中 */
+            width: 650px;
+            height: 360px;
+            border: 1px solid #000;
+            margin: 50px auto;
+            /* 父相 */
+            position: relative;
+        }
+
+        .carousel ul {
+            list-style: none;
+        }
+
+        .carousel ul li {
+            position: absolute;
+            top: 0;
+            left: 0;
+            /* 设置所有图片透明度均为 0 */
+            opacity: 0;
+            /* 设置所有图片的过渡效果 */
+            transition: opacity 1s ease 0s;
+        }
+
+        /*知识回顾：:first-child 是 CSS3 中新增的伪类选择器，它可以选中作为其父元素的第一个子元素的元素。 */
+        .carousel ul li:first-child { 
+            /* 设置第一张图片透明度为 1 */
+            opacity: 1;
+        }
+
+        /* 脱离了标准文档流的元素一定可以设置宽和高，这是设置postion: absolute或float: right后a标签元素就可以设置宽高的原因吗？ */
+
+        /* 是的，这个理解是正确的。元素的默认宽度和高度的设定规则是依赖于它在文档流中的位置和性质的。块级元素（比如 `<div>`）默认会占据其父元素的全部宽度，而高度则由其内部内容决定；内联元素（比如 `<span>` 或 `<a>`）的宽度和高度则完全由其内容决定。
+
+        当你将一个元素设置为绝对定位或浮动，这个元素就从标准的文档流中脱离出来，成为一个可以自由设置宽度和高度的元素。这就是为什么设置 `position: absolute` 或 `float: right/left` 之后 `<a>` 标签可以设置宽度和高度的原因。
+
+        需要注意的是，虽然这种方式可以让你为 `<a>` 标签设置宽度和高度，但是它也会使这个元素从文档流中移除，可能会对布局产生影响。因此，在使用这种方式时，你需要考虑到这个元素在布局中的位置，以及它可能对周围元素产生的影响。 */
+
+        .carousel .leftbtn {
+            position: absolute;
+            /* 在默认情况下，<a> 标签是一个内联元素，也就是说它的宽度和高度是由它的内容决定的，而不是由 width 和 height 属性决定的。这就意味着，如果你直接为 <a> 标签设置 width 和 height 属性，它们可能不会生效。因为 a 标签设置了绝对定位脱离了标准文档流，所以可以设置宽高属性 */
+            width: 50px;
+            height: 50px;
+            left: 20px;
+
+            /* 知识回顾：绝对定位的盒子设置垂直/水平居中 */
+            top: 50%;
+            margin-top: -25px;
+
+            background-color: rgb(28, 180, 226);
+            border-radius: 50%;
+        }
+
+        .carousel .rightbtn {
+            position: absolute;
+
+            width: 50px;
+            height: 50px;
+            right: 20px;
+
+
+            top: 50%;
+            margin-top: -25px;
+
+            background-color: rgb(28, 180, 226);
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="carousel">
+        <ul>
+            <li><img src="images/beijing/0.jpg" alt=""></li>
+            <li><img src="images/beijing/1.jpg" alt=""></li>
+            <li><img src="images/beijing/2.jpg" alt=""></li>
+            <li><img src="images/beijing/3.jpg" alt=""></li>
+            <li><img src="images/beijing/4.jpg" alt=""></li>
+        </ul>
+        <!-- 两个 a 标签用于制作轮播图的左右两个按钮，href="javascript:;" 作用是执行空的JS代码为的是点击后页面不会刷新 -->
+        <a href="javascript:;" class="leftbtn"></a>
+        <a href="javascript:;" class="rightbtn"></a>
+    </div>
+    <script>
+        // 淡入淡出轮播，或者叫呼吸轮播的实现原理是让第一张图片的透明度从 1 逐渐变为 0，同时让第二张图片的透明度从 0 逐渐变为 1，以此类推，就可以实现淡入淡出的效果。
+
+        
+        var leftbtn = document.querySelector('.leftbtn');
+        var rightbtn = document.querySelector('.rightbtn');
+        var ul = document.querySelector('ul');
+        var pictures = document.querySelectorAll('ul li');
+
+        // 定义一个变量，用于记录当前显示的图片的索引
+        var index = 0;
+        // 定义节流变量，用于控制点击事件的触发频率，初始化为 true，表示可以触发点击事件
+        var allowRun = true;
+
+        // 右按钮使用 addEventListener 绑定点击事件
+        rightbtn.addEventListener('click', function () {
+            // 如果 allowRun 为 false，说明上一次点击事件还没有执行完毕，直接 return，不再执行下面的代码
+            if (!allowRun) {
+                return;
+            }
+            // 将 allowRun 设置为 false，表示本次点击事件开始执行
+            allowRun = false;
+            // 在 index++ 之前 index 代表的是老图的索引，老图要淡出，所以老图的透明度要从 1 逐渐变为 0
+            pictures[index].style.opacity = 0;
+            index++;
+            if (index > pictures.length - 1) {
+                index = 0;
+            }
+            // index++ 之后 index 代表的是新图的索引，新图要淡入，所以新图的透明度要从 0 逐渐变为 1
+            pictures[index].style.opacity = 1;
+            
+            setTimeout(function () {
+                // 设置 1000ms 的延迟，即等到动画执行完毕后，将 allowRun 设置为 true，表示下一次点击事件可以执行
+                allowRun = true;
+            }, 1000)
+        });
+
+
+        // 左按钮使用 addEventListener 绑定点击事件
+        leftbtn.addEventListener('click', function () {
+            if (!allowRun) {
+                return;
+            }
+            allowRun = false;
+            pictures[index].style.opacity = 0;
+            index--;
+            if (index < 0) {
+                index = pictures.length - 1;
+            }
+            pictures[index].style.opacity = 1;
+            setTimeout(function () {
+                allowRun = true;
+            }, 1000)
+        });
+    </script>
+</body>
+
+</html>

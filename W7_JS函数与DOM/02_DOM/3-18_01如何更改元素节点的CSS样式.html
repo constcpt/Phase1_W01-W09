@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3-18_01如何更改元素节点的CSS样式</title>
+    <style>
+      .box {
+        width: 200px;
+        height: 200px;
+        border: 1px solid #000;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 工作中常见的不成文的规范：class用于书写样式，id用于书写js来更改/设置样式 -->
+    <div class="box" id="box">你好</div>
+    <script>
+      var oBox = document.getElementById("box");
+
+      // oBox.style.backgroundColor = 'rgb(100, 200, 123)';
+      // oBox.style.backgroundColor = '#f80'; // 本质是通过设置元素节点的style属性来更改元素节点的样式，而不是更改样式表
+
+      // oBox.style.backgroundImage = 'url(https://www.imooc.com/static/img/index/logo-recommended.png)';
+      // oBox.style.backgroundSize = 'contain';
+
+      oBox.style.fontSize = "50px"; // 双引号和单引号都可以，都表示字符串
+    </script>
+  </body>
+</html>

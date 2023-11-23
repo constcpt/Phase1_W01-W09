@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3-13_节点的关系-封装常用函数</title>
+  </head>
+
+  <body>
+    <div id="box">
+      <p>我是段落</p>
+      <p>我是段落</p>
+      <p>我是段落</p>
+      <p id="fpara">我是段落fpara</p>
+      我是文本
+      <!-- 我是注释 -->
+      <p id="para">
+        我是段落para
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+      </p>
+      <p>我是段落</p>
+      <p>我是段落</p>
+      <p>我是段落</p>
+    </div>
+
+    <script>
+      var box = document.getElementById("box");
+      var para = document.getElementById("para");
+      var fpara = document.getElementById("fpara");
+
+      // 封装一个函数，这个函数可以返回元素的所有子元素节点（兼容到IE6），类似children的功能
+      function getChildren(node) {
+        // 结果数组
+        var children = [];
+        // 遍历node这个节点的所有子节点，判断每一个子节点的nodeType属性是不是1
+        // 如果是1，就推入结果数组
+        for (var i = 0; i < node.childNodes.length; i++) {
+          if (node.childNodes[i].nodeType == 1) {
+            children.push(node.childNodes[i]);
+          }
+        }
+        return children;
+      }
+
+      console.log(getChildren(box));
+      console.log(getChildren(para));
+
+      // 封装第二个函数，这个函数可以返回元素的前一个元素兄弟节点（兼容到IE6），类似previousElementSibling的功能
+      function getElementPrevSibling(node) {
+        // 使用while语句
+        while (node.previousSibling != null) {
+          if (node.previousSibling.nodeType == 1) {
+            // 结束循环，找到了
+            return node.previousSibling;
+          }
+
+          // 让 node 成为它的前一个节点，就有点“递归”的感觉
+          node = node.previousSibling;
+        }
+        return null; // 没有前一个元素兄弟节点，返回null
+      }
+
+      console.log(getElementPrevSibling(para));
+      console.log(getElementPrevSibling(fpara));
+
+      // 封装第三个函数，这个函数可以返回元素的所有元素兄弟节点
+      function getAllElementSibling(node) {
+        // 前面的元素兄弟节点
+        var prevs = [];
+        // 后面的元素兄弟节点
+        var nexts = [];
+        
+        // 保存node的引用，因为node会变化
+        var index = node;
+        // 遍历node的前面的节点
+        while (index.previousSibling != null) {
+          if (index.previousSibling.nodeType == 1) {
+            prevs.unshift(index.previousSibling); // unshift() 方法可向数组的开头添加一个或更多元素，并返回新的长度。
+          }
+          index = index.previousSibling;
+        }
+        // 重置index的值，因为index不再是node了
+        index = node;
+
+        // 遍历node的后面的节点
+        while (index.nextSibling != null) {
+          if (index.nextSibling.nodeType == 1) {
+            nexts.push(index.nextSibling);
+          }
+          index = index.nextSibling;
+        }
+
+        // 将两个数组进行合并，然后返回
+        return prevs.concat(nexts); // concat() 方法用于连接两个或多个数组，返回连接后的新数组
+      }
+
+      console.log(getAllElementSibling(para));
+    </script>
+  </body>
+</html>

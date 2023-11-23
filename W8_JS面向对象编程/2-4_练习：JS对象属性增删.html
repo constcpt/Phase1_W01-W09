@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-4_练习：JS对象属性增删</title>
+</head>
+
+<body>
+    <script>
+        var lang = "language"
+
+        var person = {
+            hair: "black",
+            skin: "yellow",
+            nationality: "France"
+        }
+        // 任务
+        // 1. 为person添加一个属性“language”，属性值为“Chinese”
+        // 2. 删除person的属性“nationality”
+
+        // 补充代码
+        person[lang] = "Chinese";
+        delete person.nationality;
+        console.log(person); // {hair: "black", skin: "yellow", language: "Chinese"}
+
+    </script>
+</body>
+
+</html>

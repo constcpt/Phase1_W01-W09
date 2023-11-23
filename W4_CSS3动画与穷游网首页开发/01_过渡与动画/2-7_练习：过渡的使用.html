@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-7_练习：过渡的使用</title>
+    <style>
+        div {
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 50px;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 200px;
+            height: 50px;
+            margin: auto;
+            cursor: pointer;
+            text-align: center;
+            background: #abcdef;
+            /*此处写代码*/
+            /* 是否需要写 transform: rotate(0deg); 来定义初始状态？https://class.imooc.com/course/qadetail/340755 */
+            /* 一般来说配合 js 开发时会更多的考虑样式的初始问题，使用 css 控制动画效果大多数情况可以不考虑“初始化”的问题 */
+           transition: transform 1s linear 0s;
+        }
+        /*此处写代码*/
+        div:hover {
+            /* font-size: 28px;
+            line-height: 100px;
+            width: 400px;
+            height: 100px; */
+            transform: scale(2) rotate(360deg);
+        }
+    </style>
+</head>
+<body>
+    <div>www.imooc.com</div>
+</body>
+</html>

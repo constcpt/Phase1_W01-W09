@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-22_01事件委托</title>
+</head>
+
+<body>
+    <button id="btn">按我创建一个新列表项</button>
+    <ul id="list">
+        <li>列表项</li>
+        <li>列表项</li>
+        <li>列表项</li>
+    </ul>
+    <script>
+        var list = document.getElementById('list');
+        var btn = document.getElementById('btn');
+        
+        list.addEventListener('click', function (e) {
+            // e.target 返回的是返回触发事件的目标元素, 也就是真正被点击的元素。e.currentTarget 返回的是绑定了事件监听器的元素，等同于 this
+            e.target.style.color = 'red';
+        });
+
+        btn.addEventListener('click', function () {
+            // 创建新的li元素
+            var newLi = document.createElement('li');
+            // 写内容
+            newLi.innerText = '我是新来的';
+            // 上树
+            list.appendChild(newLi);
+        });
+    </script>
+</body>
+
+</html>

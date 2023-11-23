@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-6_盒模型计算</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        /* 可以提供给子盒子使用的范围就是 400*300 */
+        .box {
+            width: 400px;
+            height: 300px;
+            padding: 10px;
+            border: 6px solid blue;
+            margin: 40px auto;
+        }
+        
+        .box .c1 {
+            /* c1 盒子实际占据的宽度是 400px，实际占据的高度是 200px，并且向下踹了 20px */
+            /* 这意味着只给 c2 盒子留了 80px 的高度 */
+            width: 388px;
+            height: 188px;
+            border: 6px solid green;
+            margin-bottom: 20px;
+        }
+
+        .box .c2 {
+            /* 留给 c2 盒子可供其使用的宽度是 400px，高度是 80px */
+            width: 388px;
+            height: 48px;
+            /* padding 的二数值写法，分别代表上下，左右的 padding 值 */
+            padding: 10px 0;
+            border: 6px solid orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="c1">1</div>
+        <!-- 能观察到 c2 盒子中的 2 只贴合左边线不贴合上边线，原因是 c2 盒子有上下 padding 无左右 padding -->
+        <div class="c2">2</div>
+    </div>
+</body>
+
+</html>

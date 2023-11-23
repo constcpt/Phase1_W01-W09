@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7-5_练习：数字取整</title>
+</head>
+<body>
+    <!-- 页面弹出输入框，让用户输入运动时间 -->
+    <script>
+        // var time = prompt('请输入运动时间：');
+        // // 输入的时间格式仅限为整数或浮点数
+        // time = Number(time); // Number()函数可以将字符串转换为数字，如果字符串不是纯数字，那么转换结果为NaN。常用于将用户的输入转换为数字 
+        
+        // //对用户输入的内容进行判断，如运动时间大于20分钟，用上取整的方式对时间进行取整；如运动时间小于20分钟，用下取整的方式对时间进行取整。用一个新的变量接收取整过的时间
+        // if (isNaN(time) === true) {
+        //     alert('请输入数字');
+        // } else if (time > 20) {
+        //     var newTime = Math.ceil(time);
+        // } else {
+        //     var newTime = Math.floor(time);
+        // }
+
+        // //将最后的结果输出在页面上
+        // document.write('您的运动时间为：' + newTime + '分钟');
+
+        // 优化代码
+        var time = Number(prompt('请输入运动时间：')); //prompt 函数的作用是弹出输入框，Number 函数将用户的输入由字符串转为数字，如果字符串不是纯数字，那么转换结果为NaN。常用于将用户的输入转换为数字
+        while (isNaN(time) === true) {
+            alert('请输入整数或者浮点数');
+            time = prompt('请输入运动时间：');
+        }
+        if (time > 20) {
+            var newTime = Math.ceil(time);
+        } else {
+            var newTime = Math.floor(time);
+        }
+        document.write('您的运动时间为：' + newTime + '分钟');
+    </script>
+</body>
+</html>

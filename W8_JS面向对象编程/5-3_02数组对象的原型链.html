@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr = [344, 45, 34, 23];
+        // var arr = new Array(344, 45, 34, 23); // 还记得这种创建数组的方式吗？这种数组创建方式体现了数组对象是由 Array 构造函数创建的
+
+        console.log(arr.__proto__ === Array.prototype); // true，arr.__proto__ 指向 Array.prototype，说明数组对象的原型是 Array.prototype
+        console.log(Object.getPrototypeOf(arr) === Array.prototype); // true，MDN文档推荐使用 Object.getPrototypeOf() 来获取对象的原型
+        console.log(arr.__proto__.__proto__ === Object.prototype); // true，说明数组对象原型链的顶端也是 Object.prototype
+
+        console.log(Array.prototype.hasOwnProperty('push')); // true
+        console.log(Array.prototype.hasOwnProperty('splice')); // true
+        
+        // 为什么所有数组对象都可以调用 push()，splice() 等许多方法？
+        // 因为 push() 和 splice() 方法定义在 Array.prototype 上，而所有数组对象的原型都是 Array.prototype，因此所有数组对象都可以调用 push() 和 splice() 方法
+
+        // 为什么所有数组对象都可以调用 toString()，hasOwnProperty() 等方法？
+        // 因为所有数组对象的原型链的顶端都是 Object.prototype，而 Object.prototype 上定义了 toString()，hasOwnProperty() 等方法，因此所有数组对象都可以调用这些方法
+
+    </script>
+</body>
+</html>

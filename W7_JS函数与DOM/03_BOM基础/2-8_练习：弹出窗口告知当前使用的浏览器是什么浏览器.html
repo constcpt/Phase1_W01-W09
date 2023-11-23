@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-8_练习：弹出窗口告知当前使用的浏览器是什么浏览器</title>
+</head>
+
+<body>
+    <input type="button" value="点击获取浏览器信息" id="browser">
+    <script type="text/javascript">
+        var btn = document.getElementById("browser"); // get button
+        btn.addEventListener('click', function () { // add event listener to button
+            var sUsrAg = navigator.userAgent; // get user agent
+            if (sUsrAg.indexOf("Chrome") > -1) { // if Chrome
+                alert("你的浏览器是Chrome"); // alert
+            } else if (sUsrAg.indexOf("Firefox") > -1) { // if Firefox
+                alert("你的浏览器是Firefox"); // alert
+            } else if (sUsrAg.indexOf("Safari") > -1 && sUsrAg.indexOf("Chrome") == -1) { // if Safari
+                alert("你的浏览器是Safari"); // alert
+            } else if (sUsrAg.indexOf("MSIE") > -1) { // if IE
+                alert("你的浏览器是IE"); // alert
+            } else { // if other
+                alert("你的浏览器不是Chrome，Firefox，Safari，IE"); // alert
+            }
+        });
+    </script>
+</body>
+
+</html>

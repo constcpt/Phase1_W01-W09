@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-5_对象的方法与调用</title>
+</head>
+<body>
+    <script>
+        var xiaoming = {
+            name: '小明',
+            age: 12,
+            sex: '男',
+            sayHello: function () {
+                console.log('你好我是小明，我12岁了，我是一个男生');
+            },
+            sleep: function () {
+                console.log('小明开始睡觉zzzzz');
+            }
+        };
+
+        var xiaohong = {
+            name: '小红',
+            age: 11,
+            sex: '女',
+            sayHello: function () {
+                console.log('你好我是小红，我11岁了，我是一个女生');
+            },
+            sleep: function () {
+                console.log('小红开始睡觉zzzzz');
+            }
+        };
+
+        xiaoming.sayHello();
+        xiaohong.sayHello();
+        xiaohong.sleep();
+
+        // 再看之前常用的函数调用 
+        console.log(); // console 是 JS 自带的一个对象，log是console对象的一个方法
+        Math.ceil(); // Math是 JS 自带的一个对象，ceil是Math对象的一个方法，作用是向上取整
+    </script>
+</body>
+</html>

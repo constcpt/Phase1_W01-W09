@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 例1
+        var xiaoming = {
+            nickname: '小明',
+            age: 12,
+            sayHello: function () {
+                console.log('大家好，我是' + this.nickname + '，我今年' + this.age + '岁了。');
+            }
+        };
+
+        xiaoming.sayHello(); // 大家好，我是小明，我今年12岁了。此时函数中的this指向xiaoming对象
+
+        var sayHello = xiaoming.sayHello;
+        sayHello(); // 大家好，我是undefined，我今年undefined岁了。此时函数中的this指向window对象
+        
+        // 例2
+        var obj = {
+            a: 1,
+            b: 2,
+            fn: function() {
+                console.log(this.a + this.b);
+                console.log(this === window);
+            }
+        };
+
+        obj.fn(); // 3 false
+
+        var a = 4;
+        var b = 9;
+
+        var fn = obj.fn;
+        fn(); // 13 true
+
+        // 总结：this具体代表哪个对象，取决于函数的调用方式，而不是函数的定义方式
+    </script>
+</body>
+</html>

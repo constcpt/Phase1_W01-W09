@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-10_过渡效果实战2</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            width: 508px;
+            height: 107px;
+            /* border: 1px solid #000; */
+            margin: 40px auto;
+        }
+        .box ul {
+            list-style: none;
+        }
+        .box ul li {
+            float: left;
+            width: 107px;
+            height: 107px;
+            margin-right: 20px;
+            /* background-color: red; */
+            position: relative;
+        }
+        /* 为什么这里要创建伪元素来设置可以旋转的背景而不直接设置每一个 li 元素的背景，我想原因应该是如果直接设置接每一个 li 元素的背景控制其旋转会让整个 li 元素内的内容跟着都一起旋转，这样不符合效果要求 */
+        .box ul li::before {
+            content: '';
+            display: block;
+            width: 107px;
+            height: 107px;
+            /* 为了避免某些浏览器有 bug 建议把初始状态写上 */
+            transform: rotate(0);
+            transition: transform 1s ease 0s;
+        }
+        .box ul li:nth-child(1)::before {
+            /* 伪元素必须要设置 content 属性 */
+            content: '';
+            display: block;
+            width: 107px;
+            height: 107px;
+            background-image: url(images/a_1.png);
+            /* transform: rotate(0);
+            transition: transform 1s ease 0s; */
+        }
+        .box ul li:nth-child(2)::before {
+            
+            background-image: url(images/a_2.png);
+        }
+        .box ul li:nth-child(3)::before {
+            
+            background-image: url(images/a_3.png);
+        }
+        .box ul li:nth-child(4)::before {
+            
+            background-image: url(images/a_4.png);
+        }
+        /* 使用绝对定位把图标的位置调整到目标位置 */
+        .box ul li img {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            top: 50%;
+            left: 50%;
+            margin-top: -30px;
+            margin-left: -30px;
+            /* transform: translate(-50%, -50%); */
+            transition: transform 0.5s ease 0s;
+        }
+
+        /* 实现交互效果 */
+        .box ul li:hover::before {
+            transform: rotate(360deg);
+        }
+        .box ul li:hover img {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <ul>
+            <li><img src="images/icon1.svg" alt=""></li>
+            <li><img src="images/icon2.svg" alt=""></li>
+            <li><img src="images/icon3.svg" alt=""></li>
+            <li><img src="images/icon4.svg" alt=""></li>
+        </ul>
+    </div>
+</body>
+</html>

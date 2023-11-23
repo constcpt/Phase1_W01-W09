@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-4_03清除浮动-方法3</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .clearfix::after {
+            /* 是因为::after是创建最后一个伪元素，伪元素需要转换成块级元素才能消除浮动 */
+            /* content必须写，伪元素必须设置 content 属性 */
+            content: '';
+            clear: both;
+            /* 转为块级元素 */
+            display: block;
+        }
+
+        div {
+            margin-bottom: 10px;
+        }
+
+        p {
+            float: left;
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+            margin-right: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="clearfix">
+        <p></p>
+        <p></p>
+    </div>
+    <div class="clearfix">
+        <p></p>
+        <p></p>
+    </div>
+</body>
+
+</html>

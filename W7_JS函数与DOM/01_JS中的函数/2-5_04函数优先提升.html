@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-5_04函数优先提升</title>
+</head>
+
+<body>
+    <script>
+        fun(); // B
+
+        var fun = function () {
+            alert('A');
+        };
+
+        function fun() {
+            alert('B');
+        }
+
+        fun(); // A
+    </script>
+</body>
+
+</html>

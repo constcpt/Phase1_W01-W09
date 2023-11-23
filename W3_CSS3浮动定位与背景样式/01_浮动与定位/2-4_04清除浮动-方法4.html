@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-4_04清除浮动-方法4</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        p {
+            float: left;
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+            margin-right: 20px;
+        }
+
+        .cl {
+            clear: both;
+        }
+
+        /* 原子类 */
+        .h20 {
+            height: 20px;
+        }
+
+        .h22 {
+            height: 22px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <p></p>
+        <p></p>
+    </div>
+    <!-- 同一个标签可以同时属于多个类，类名用空格隔开，设置隔离用盒子的高度来充当缝隙 -->
+    <div class="cl h20"></div>
+    <div>
+        <p></p>
+        <p></p>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-5_规则3：数组（或 array-like object 类数组对象）枚举出函数项来调用，this 指代数组（类数组对象）本身</title>
+</head>
+<body>
+    <script>
+        // this 指代什么规则3：数组（或 array-like object 类数组对象）枚举出函数项来调用，this 指代数组（类数组对象）本身
+        // 回顾：
+        // JS 数组的可以存储任意类型的数据，它是一种特殊的对象，它的 key 是数字，value 是任意类型的数据。所以 JS 数组项当然可能是函数。
+        // array-like object 类数组对象指的是拥有 length 属性，但是没有数组的方法如 push、pop 等的对象。
+        // arguments 是最典型的类数组对象，它表示函数的参数列表，它的 length 属性表示函数的参数个数。它在函数内部可以直接使用，不需要声明。我们调用函数时所有传入的参数都会被 arguments 对象接收，它的索引从 0 开始。
+
+        var arr = ['A', 'B', 'C', function () {
+            console.log(this[0]);
+        }];
+        arr[3](); // A，this 指代 arr 数组对象
+
+        function fun() {
+            arguments[3]();
+        }
+        fun('A', 'B', 'C', function () {
+            console.log(this[1]);
+        }); // B，this 指代 arguments 类数组对象。适用于规则3
+
+
+        var a = 6;
+        var obj = {
+            a: 5,
+            b: 2,
+            c: [
+                1,
+                a,
+                function () {
+                    console.log(this[1]);
+                }
+            ]
+        };
+        obj.c[2](); // 6，this 指代 obj.c 数组对象，而 obj.c 数组对象的第二项是全局变量 a，所以 this[1] 指代全局变量 a == 6。适用于规则3
+    </script>
+</body>
+</html>

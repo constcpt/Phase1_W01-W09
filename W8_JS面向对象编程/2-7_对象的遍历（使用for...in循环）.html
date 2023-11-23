@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-7_对象的遍历（使用for...in循环）</title>
+</head>
+
+<body>
+    <script>
+        var obj = {
+            a: 11,
+            b: 22,
+            c: 88
+        };
+
+        // key 可以是任意变量名，代表对象的属性名
+        for (var key in obj) {
+            console.log('对象obj的属性 ' + key + ' 的值是 ' + obj[key]); // obj[key] 注意对象使用变量名访问属性值时，需要使用方括号而不能使用点语法
+        }
+        // 对象obj的属性 a 的值是 11
+        // 对象obj的属性 b 的值是 22
+        // 对象obj的属性 c 的值是 88
+        
+        // from `forin` auto-generated code
+        // for (const key in obj) {
+        //     if (Object.hasOwnProperty.call(obj, key)) {
+        //         const element = obj[key];
+        //         console.log('对象obj的属性' + key + '的值是' + element);
+        //     }
+        // }
+
+        /*
+
+        ```javascript
+        var obj = {
+        a: 11,
+        b: 22,
+        c: 88
+        };
+
+        for (const key in obj) {
+        if (Object.hasOwnProperty.call(obj, key)) {
+            const element = obj[key];
+            // do something with element
+        }
+        }
+        ```
+
+        这段代码的主要部分解释如下：
+
+        1. `for (const key in obj) {...}`：这是一个`for...in`循环，它会遍历对象`obj`的所有可枚举属性，包括`obj`自身的属性和它从原型链上继承的属性。在每一次循环中，变量`key`会被赋值为一个属性的键名。
+
+        2. `if (Object.hasOwnProperty.call(obj, key)) {...}`：这是一个`if`语句，它用来检查属性是否是对象`obj`自身的属性，而不是从原型链上继承的属性。`Object.hasOwnProperty.call(obj, key)`的作用是调用`hasOwnProperty`方法，检查`obj`是否有一个名为`key`的自有属性。
+
+        3. `const element = obj[key];`：这行代码从对象`obj`中取出键为`key`的属性的值，并赋值给常量`element`。
+
+        在这段代码的`if`语句中，你可以添加自己的代码，对`obj`的每一个自有属性执行某些操作。例如，你可以把所有的属性值打印出来：
+
+        ```javascript
+        for (const key in obj) {
+        if (Object.hasOwnProperty.call(obj, key)) {
+            const element = obj[key];
+            console.log(key + ": " + element);
+        }
+        }
+        ```
+
+        这段代码会输出：
+
+        ```
+        a: 11
+        b: 22
+        c: 88
+        ```
+        */
+    </script>
+</body>
+
+</html>

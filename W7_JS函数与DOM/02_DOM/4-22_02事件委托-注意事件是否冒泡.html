@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-22_02事件委托-注意事件是否冒泡</title>
+</head>
+
+<body>
+    <button id="btn">按我创建一个新列表项</button>
+    <ul id="list">
+        <li><span>ABCDEFG</span>列表项</li>
+        <li><span>ABCDEFG</span>列表项</li>
+        <li><span>ABCDEFG</span>列表项</li>
+    </ul>
+    <script>
+        var list = document.getElementById('list');
+        var btn = document.getElementById('btn');
+
+        // mouseenter这个属性天生就是“不冒泡”的，相当于事件处理函数附加给了哪个DOM节点就是哪个DOM节点自己触发的事件，没有冒泡过程
+        // list.addEventListener('mouseenter', function (e) {
+        //     // e.target 返回的是返回触发事件的目标元素, 也就是真正被点击的元素。e.currentTarget 返回的是绑定了事件监听器的元素，等同于 this
+        //     e.target.style.color = 'red';
+        // });
+
+        // mouseover 这个属性是冒泡的，所以事件委托可以正常使用
+        list.addEventListener('mouseover', function (e) {
+            // e.target表示用户真正点击的那个元素
+            e.target.style.color = 'red';
+        });
+
+        btn.onclick = function () {
+            // 创建新的li元素
+            var oLi = document.createElement('li');
+            // 写内容
+            oLi.innerText = '我是新来的';
+            // 上树
+            list.appendChild(oLi);
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4-11_练习：表单获焦失焦事件监听</title>
+    <style type="text/css">
+      .red {
+        border: 1px solid red;
+      }
+    </style>
+  </head>
+
+  <body>
+    姓名：<input type="text" /> <span></span>
+    <script>
+      // 获取文本框
+      var txt = document.querySelector("input");
+      // 获取span
+      var span = document.querySelector("span");
+      // 给文本框绑定onfocus事件
+      txt.onfocus = function () {
+        // 当输入框获得焦点时，如果输入框值为空，提示请输入您的姓名
+        if (txt.value == "") {
+          txt.className = "";
+          span.innerHTML = "请输入您的姓名";
+        }
+      };
+      // 给文本框绑定onblur事件
+      txt.onblur = function () {
+        // 当输入框失去焦点时，如果输入框值为空，提示姓名不能为空，并且边框变为红色
+        if (txt.value == "") {
+          span.innerHTML = "姓名不能为空";
+          txt.className = "red";
+        }
+        // 当输入框失去焦点时，如果输入框值不为空，那么没有提示文字，边框颜色是默认颜色
+        else {
+          span.innerHTML = "";
+          txt.className = "";
+        }
+      };
+    </script>
+  </body>
+</html>

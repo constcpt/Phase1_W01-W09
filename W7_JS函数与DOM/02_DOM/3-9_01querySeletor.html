@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-9_01querySeletor</title>
+</head>
+<body>
+    <div id="box">
+        <p>我是段落</p>
+        <p class="spec para">我是段落</p>
+        <p>我是段落</p>
+        <p class="spec para">我是段落</p>
+    </div>
+    <script>
+        var another_p = document.querySelector("#box .spec");
+        console.log(another_p);
+        
+        // 实验 CSS3 选择器，实际用的不多
+        // var the_p = document.querySelector('#box p:nth-child(1)');
+        // console.log(the_p);
+        
+        // 以下写法简单易懂
+        var the_p = document.querySelectorAll("#box p");
+        console.log(the_p[0]);
+
+    </script>
+</body>
+</html>

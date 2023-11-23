@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-20_事件对象05：fromChatGPT属性练习之键盘事件属性实例</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+  
+      #info {
+        margin-top: 20px;
+      }
+    </style>
+</head>
+
+<body>
+  <h1>键盘事件属性示例</h1>
+  <p>请点击键盘上的任意键。</p>
+  <div id="info"></div>
+
+  <script>
+    document.addEventListener('keydown', function(event) {
+      var info = document.getElementById('info');
+      info.innerHTML = `
+        <p><strong>key:</strong> ${event.key}</p>
+        <p><strong>code:</strong> ${event.code}</p>
+        <p><strong>keyCode (deprecated):</strong> ${event.keyCode}</p>
+        <p><strong>ctrlKey:</strong> ${event.ctrlKey}</p>
+        <p><strong>shiftKey:</strong> ${event.shiftKey}</p>
+        <p><strong>altKey:</strong> ${event.altKey}</p>
+        <p><strong>metaKey:</strong> ${event.metaKey}</p>
+      `;
+    });
+    // charCode 和 keyCode 这两个属性都已经被废弃，不再建议使用。它们的替代方案是 key 和 code 属性。
+    /*
+      在早期的浏览器和 JavaScript 规范中，keyCode 属性被用于获取按键的键码，而 charCode 属性被用于获取按下的字符的 Unicode 编码。然而，这两个属性在不同的浏览器和平台之间存在一些兼容性问题。
+      最新的规范建议使用 key 属性来代替这两个属性。key 属性返回代表按下的键的字符串。这个字符串对于特殊键（如 "Enter", "Escape", "ArrowRight" 等）是它们的名字，对于字符键，是实际输入的字符。
+      下面是一个例子：
+      document.addEventListener('keydown', function(event) {
+      console.log(event.key);
+      });
+      在这个例子中，当你按下一个键时，会输出该键代表的字符串。例如，如果你按下 "a" 键，会输出 "a"；如果你按下右箭头键，会输出 "ArrowRight"。
+      请注意，虽然 charCode 和 keyCode 被废弃，但是为了向后兼容，它们仍然在所有主流浏览器中可用。然而，为了编写未来兼容的代码，建议使用 key 属性代替 charCode 和 keyCode。
+    */
+
+
+    // event.key：返回一个字符串代表被按下的键的字符值。这个字符串对于打印字符键是它们的字符（不区分大小写），对于非打印字符键是它们的名字，例如：a、b、c、1、2、3、Enter、Shift、Ctrl、Alt、Esc、Space、Delete、Backspace、Tab、CapsLock、ArrowUp、ArrowDown、ArrowLeft、ArrowRight、PageUp、PageDown、Home、End、Insert、F1、F2、F3、F4、F5、F6、F7、F8、F9、F10、F11、F12、NumLock、ScrollLock、Pause、ContextMenu、PrintScreen、BrowserSearch、BrowserFavorites、BrowserHome、VolumeMute、VolumeDown、VolumeUp、MediaTrackNext、MediaTrackPrevious、MediaStop、MediaPlayPause、Semicolon、Equal、Comma、Minus、Period、Slash、Backquote、BracketLeft、Backslash、BracketRight、Quote
+    // event.code：返回一个字符串，代表被按下的键的物理键码。例如：KeyA、KeyB、KeyC、Digit1、Digit2、Digit3、Enter、ShiftLeft、ControlLeft、AltLeft、Escape、Space、Delete、Backspace、Tab、CapsLock、ArrowUp、ArrowDown、ArrowLeft、ArrowRight、PageUp、PageDown、Home、End、Insert、F1、F2、F3、F4、F5、F6、F7、F8、F9、F10、F11、F12、NumLock、ScrollLock、Pause、ContextMenu、PrintScreen、BrowserSearch、BrowserFavorites、BrowserHome、VolumeMute、VolumeDown、VolumeUp、MediaTrackNext、MediaTrackPrevious、MediaStop、MediaPlayPause、Semicolon、Equal、Comma、Minus、Period、Slash、Backquote、BracketLeft、Backslash、BracketRight、Quote
+    // event.keyCode (deprecated)：返回一个整数，代表被按下的键的键码。这个属性已经被废弃，不推荐使用。
+    // event.ctrlKey：返回一个布尔值，代表 Ctrl 键是否被按下。
+    // event.shiftKey：返回一个布尔值，代表 Shift 键是否被按下。
+    // event.altKey：返回一个布尔值，代表 Alt 键是否被按下。
+    // event.metaKey：返回一个布尔值，代表 Meta 键是否被按下。Meta 键在 Windows 键盘上是 Windows 键，在 Mac 键盘上是 Command 键。
+  </script>
+</body>
+
+</html>

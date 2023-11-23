@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div><a href="页面3.html">前往页面3.html</a></div>
+    <div><button>回到页面1</button></div>
+    <script>
+        var btn = document.querySelector('button');
+        btn.addEventListener('click', function () {
+            // history.back();
+            history.go(-1);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-21_线性渐变</title>
+    <style>
+        .box1 {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+            margin-bottom: 10px;
+            /* 渐变背景现在兼容性很好了，但是在前几年是要加上浏览器私有前缀才能使用的 */
+            /* 加上浏览器私有前缀的作用：让一些低版本的浏览器也能识别支持这种实验性质的 CSS 语句 */
+            background-image: -webkit-linear-gradient(to right, red, blue);
+            background-image: -moz-linear-gradient(to right, red, blue);
+            background-image: -ms-linear-gradient(to right, red, blue);
+            background-image: -o-linear-gradient(to right, red, blue);
+            background-image: linear-gradient(to right, red, blue);
+            /* 可能会觉得书写这么多带私有浏览器前缀的语句很麻烦，之后学习的 node.js 有很多智能化工具能够帮我们自动的给网页上的 CSS 添加必要的私有前缀，如 gulp */
+            /* 暂时为了面试这些私有化前缀需要记忆，工作当中并不需要自己手动添加 */
+        }
+
+        .box2 {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+            margin-bottom: 10px;
+            background-image: linear-gradient(45deg, red, blue);
+        }
+
+        .box3 {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+            margin-bottom: 10px;
+            background-image: linear-gradient(to right, red, yellow, orange, green, blue, purple);
+        }
+
+        .box4 {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+            margin-bottom: 10px;
+            background-image: linear-gradient(to right, red, yellow 20%, blue);
+        }
+
+        .box5 {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+            margin-bottom: 10px;
+            background-image: linear-gradient(to right, red, yellow 80%, blue);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+    <div class="box4"></div>
+    <div class="box5"></div>
+</body>
+
+</html>

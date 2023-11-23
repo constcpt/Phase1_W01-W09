@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>6-2_动画效果开发1 - 无缝连续滚动特效</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      .box {
+        width: 1000px;
+        height: 130px; /* 高度设置和图片高度相同*/
+        border: 1px solid #000;
+        margin: 50px auto;
+        overflow: hidden;
+      }
+
+      .box ul {
+        list-style: none; /* 去掉 list 自带的小圆点样式 */
+        width: 5000px; /* 设置大一点，方便所有 li 并排显示 */
+        position: relative; /* 设置相对定位，为的是设置 left 值 */
+      }
+      /* 在CSS中，top，right，bottom 和 left 属性只有在元素的 position 属性值被设置为 relative，absolute，fixed 或 sticky 时才会生效。如果 position 属性值为 static，则这些属性将不起作用。 */
+
+      .box ul li {
+        float: left;
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box" id="box">
+      <ul id="container">
+        <li><img src="images/number/0.png" alt="" /></li>
+        <li><img src="images/number/1.png" alt="" /></li>
+        <li><img src="images/number/2.png" alt="" /></li>
+        <li><img src="images/number/3.png" alt="" /></li>
+        <li><img src="images/number/4.png" alt="" /></li>
+        <li><img src="images/number/5.png" alt="" /></li>
+      </ul>
+    </div>
+    <script>
+      //实现图片无缝连续横向滚动动画效果，鼠标进入就停止滚动，鼠标移出则开始滚动。这个案例中使用定时器实现最快最直观
+
+      // 获取图片容器
+      const box = document.getElementById("box");
+      const container = document.getElementById("container");
+
+      // 复制多一遍所有的li
+      container.innerHTML += container.innerHTML;
+
+      let left = 0; // 记录当前的left值
+      let intervalId; // 记录定时器的id，作用是用于清除定时器，注意设置为全局变量
+
+      // 将动画效果封装成函数
+      function move() {
+        clearInterval(intervalId); // Clear the previous interval before starting a new one 先清除定时器，防止多次调用 move() 时，定时器叠加
+        intervalId = setInterval(() => {
+          left -= 4;
+          if (left <= -1260) { // 1260 是图片宽度 210 * 6
+            left = 0;
+          }
+          container.style.left = left + "px";
+        }, 20);
+      }
+
+      move();
+
+      // 鼠标进入图片容器，停止滚动，使用 addEventListener() 方法添加事件监听器
+      box.addEventListener("mouseenter", () => {
+        clearInterval(intervalId);
+      });
+
+      // 鼠标离开图片容器，开始滚动
+      box.addEventListener("mouseleave", move);
+      
+    </script>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-10_02更适合使用while的场景</title>
+</head>
+
+<body>
+    <script>
+        // // 寻找满足n的平方大于456789的最小整数
+        // // 穷举法，从1开始试验
+        // var n = 1;
+        // while (n * n <= 456789) {
+        //     n++;
+        // }
+        // console.log(n);
+
+        // ****************************************************
+        // 小兔子拔萝卜，第1天拔1个，第2天拔2个，第3天拔3个……
+        // 问：第几天能拔光500个萝卜？
+
+        // // 天的序号，也是这一天拔的萝卜数
+        // var n = 1;
+        // // 累加器
+        // var sum = 0;
+
+        // while (sum < 500) {
+        //     sum += n;
+        //     n++;
+        // }
+
+        // // 一定要注意这里易犯一个“出一错误”，是 n - 1 而不是 n
+        // console.log(n - 1);
+        
+        var d = 1;
+        var c = 0;
+        
+        //break 搭配 while (true)
+        while (true) {
+            c += d;
+            if (c >= 500) {
+                break;
+            }
+            d++; 
+        }
+        console.log(d); //这里写 d，没有出一错误，体现了 break 搭配 while (true) 具备一定的优势
+    </script>
+</body>
+
+</html>

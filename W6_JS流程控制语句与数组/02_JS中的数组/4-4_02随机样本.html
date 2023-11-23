@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-4_02随机样本</title>
+</head>
+
+<body>
+    <script>
+        // 随机样本的思路：准备一个结果数组，计数循环，每次循环就随机生成一个0~原数组长度-1的随机数，把这个随机数作为原数组的下标，把这个下标对应的项推入结果数组中，然后删除这个项，防止重复被随机到。
+        // 注意这种思路会使原数组发生改变
+        var arr = [3, 6, 10, 5, 8, 9];
+
+        // 结果数组
+        var result = [];
+
+        // 计数循环
+        for (var i = 0; i < 3; i++) {
+            // 随机选择一项的下标，数组的下标0~arr.length - 1;
+            // 之前学习过一个random的公式，[a,b]区间的随机数是parseInt(Math.random() * (b-a+1)) + a;
+            var n = parseInt(Math.random() * arr.length); // 为什么写 arr.length 而不直接写 6？因为arr.length是动态的，随着删除数组长度会变，这里就不用改了
+            // 把这项推入结果数组
+            result.push(arr[n]);
+            // 删除这项，防止重复被随机到
+            arr.splice(n, 1);
+        }
+
+        console.log(result);
+        
+    </script>
+</body>
+
+</html>

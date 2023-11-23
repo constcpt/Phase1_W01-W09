@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-4_01清除浮动-方法1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            /* 设置 overflow: hidden; 让 div 盒子形成 BFC，浮动就会被封闭在每一个 div 盒子内部。推荐使用这种方法清除浮动 */
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        p {
+            float: left;
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+            margin-right: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <p></p>
+        <p></p>
+    </div>
+    <div>
+        <p></p>
+        <p></p>
+    </div>
+</body>
+
+</html>

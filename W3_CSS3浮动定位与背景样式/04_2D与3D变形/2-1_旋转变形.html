@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-1_旋转变形</title>
+    <style>
+        img {
+            border: 1px solid #000;
+        }
+        .pic1 {
+            transform: rotate(30deg);
+        }
+        .pic2 {
+            transform: rotate(60deg);
+        }
+        .pic3 {
+            transform: rotate(90deg);
+        }
+        .pic4 {
+            transform: rotate(180deg);
+        }
+        .pic5 {
+            transform: rotate(369deg);
+        }
+        .pic6 {
+            /* 使用 transform-origin 属性设置自定义旋转原点，设置为 0 100% 代表以左下角为中心点进行旋转 */
+            transform-origin: 0 100%;
+            transform: rotate(30deg);
+        }
+    </style>
+</head>
+<body>
+    <p>
+        <img src="images/goblin.png" class="pic1">
+    </p>
+    <p>
+        <img src="images/goblin.png" class="pic2">
+    </p>
+    <p>
+        <img src="images/goblin.png" class="pic3">
+    </p>
+    <p>
+        <img src="images/goblin.png" class="pic4">
+    </p>
+    <p>
+        <img src="images/goblin.png" class="pic5">
+    </p>
+    <p>
+        <img src="images/goblin.png" class="pic6">
+    </p>
+</body>
+</html>

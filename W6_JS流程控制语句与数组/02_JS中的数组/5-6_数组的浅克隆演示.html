@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5-6_数组的浅克隆演示</title>
+</head>
+
+<body>
+    <script>
+        var arr1 = [1, 2, 3, 4, [6, 9, 4]];
+        // 结果数组
+        var result = [];
+        // 遍历原数组中的每一项，把遍历到的项推入到结果数组中
+        for (var i = 0; i < arr1.length; i++) {
+            result.push(arr1[i]);
+        }
+
+        console.log(result);
+        console.log(result == arr1);    // 期望 false，因为两个数组变量所指向的内存地址不一样
+        console.log(result[4] == arr1[4]);  // 期望 true，因为两个数组中的第五项都是引用类型，浅拷贝只拷贝了引用类型的地址，所以两个数组中的第五项都是同一个数组
+        result[0] = 100; // 修改结果数组中的第一项，原数组中的第一项不会受到影响
+        console.log(result, arr1); // [100, 2, 3, 4, [6, 9, 4]] [1, 2, 3, 4, [6, 9, 4]]
+        result[4][0] = 100; // 修改结果数组中的第五项中的第一项，原数组中的第五项中的第一项也会受到影响
+        console.log(result, arr1); // [100, 2, 3, 4, [100, 9, 4]] [1, 2, 3, 4, [100, 9, 4]]
+
+        //from ChatGPT
+        let originalArray = [1, 2, { a: 3 }];
+        let shallowClone = originalArray.slice();
+
+        console.log(originalArray === shallowClone);  // false
+        console.log(originalArray[2] === shallowClone[2]);  // true
+        shallowClone[0] = 100; // 修改结果数组中的第一项，原数组中的第一项不会受到影响
+        console.log(originalArray, shallowClone); // [1, 2, {a: 3}] [100, 2, {a: 3}]
+        shallowClone[2].a = 100; // 修改结果数组中的第三项中的a属性，原数组中的第三项中的a属性也会受到影响
+        console.log(originalArray, shallowClone); // [1, 2, {a: 100}] [100, 2, {a: 100}]
+    </script>
+</body>
+
+</html>

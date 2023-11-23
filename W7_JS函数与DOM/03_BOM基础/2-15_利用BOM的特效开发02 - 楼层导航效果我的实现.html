@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-15_利用BOM的特效开发02 - 楼层导航效果我的实现</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .content-part {
+            width: 1000px;
+            margin: 30px auto;
+            /* margin-bottom: 30px; */
+            background-color: #ccc;
+            font-size: 50px;
+        }
+
+        .floornav {
+            position: fixed;
+            right: 20px;
+            width: 120px;
+            height: 200px;
+            background-color: orange;
+            /* 固定定位后的盒子设置水平/垂直居中使用如下设置 */
+            top: 50%;
+            margin-top: -100px;
+        }
+
+        .floornav ul {
+            list-style: none;
+        }
+
+        .floornav ul li {
+            width: 120px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            font-size: 26px;
+            cursor: pointer;
+        }
+
+        /* floornav 内的 ul 内的 li，该li同时具有current类 */
+        .floornav ul li.current {
+            background: purple;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="floornav">
+        <ul id="list">
+            <li data-n="科技栏目" class="current">科技</li>
+            <li data-n="体育栏目">体育</li>
+            <li data-n="新闻栏目">新闻</li>
+            <li data-n="娱乐栏目">娱乐</li>
+            <li data-n="视频栏目">视频</li>
+        </ul>
+    </nav>
+
+    <section class="content-part" style="height: 674px;" data-n="科技栏目">
+        科技栏目
+    </section>
+    <section class="content-part" style="height: 567px;" data-n="体育栏目">
+        体育栏目
+    </section>
+    <section class="content-part" style="height: 739px;" data-n="新闻栏目">
+        新闻栏目
+    </section>
+    <section class="content-part" style="height: 274px;" data-n="娱乐栏目">
+        娱乐栏目
+    </section>
+    <section class="content-part" style="height: 1294px;" data-n="视频栏目">
+        视频栏目
+    </section>
+    <script>
+        var list = document.getElementById("list");
+        var contentParts = document.querySelectorAll(".content-part");
+        var lis = document.querySelectorAll("#list li");
+        var currentFloor = -1; // 用来记录当前页面处于哪个section元素，初始值为-1，表示当前页面处于导航栏之上。
+
+        // 使用事件委托，将事件绑定在父元素上，当子元素被点击时，事件会冒泡到父元素上，从而触发事件。
+        list.addEventListener('click', function (event) {
+            if (event.target.matches('li')) {
+                // alert(event.target.dataset.n);
+                var n = event.target.dataset.n;
+                // 使用属性选择器来寻找data-n属性值为n的section
+                var contentPart = document.querySelector(`section[data-n="${n}"]`);// JS 模板字符串写法，使用反引号``包裹字符串，使用${}来引用变量，不可使用单引号或双引号包裹字符串。
+
+                //知识回顾：document.documentElement.scrollTop 该之前学的卷动高度属性是获取或设置文档滚动条的垂直位置，现将其设置为contentPart.offsetTop，即课实现点击导航栏中的某个li元素后，页面滚动到相应的section元素的顶部。
+                // document.documentElement.scrollTop = contentPart.offsetTop;
+
+
+                //实现滚动的方法二：使用window.scrollTo方法，详细说明见https://developer.mozilla.org/zh-CN/docs/Web/API/Window/scrollTo
+                window.scrollTo({
+                    top: contentPart.offsetTop,
+                    behavior: "instant"
+                });
+
+                // 为当前被点击的li元素添加current类，为其他li元素移除current类。
+                event.target.classList.add("current");
+                for (var i = 0; i < lis.length; i++) {
+                    if (lis[i] != event.target) {
+                        lis[i].classList.remove("current");
+                    }
+                }
+            }
+        });
+
+        // 监听页面滚动事件，根据页面滚动的高度处于哪两个section元素之间，来判断当前页面处于哪个section元素，从而高亮显示导航栏中的某个li元素。高亮显示的方法是为该li元素添加current类，为其他li元素移除current类。
+        window.addEventListener("scroll", function () {
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop; // 获取页面滚动的高度，兼容写法。
+            // 遍历所有的section元素，判断当前页面滚动的高度处于哪两个section元素之间，从而确定currentFloor的值。
+            for (var i = 0; i < contentParts.length; i++) {
+                // 获取当前section元素的高度
+                var contentPartHeight = contentParts[i].offsetHeight; // offsetHeight属性是获取元素的高度，包括元素的高度、内边距和边框。
+                // 获取当前section元素距离页面顶部的高度
+                var contentPartTop = contentParts[i].offsetTop;
+                if (scrollTop >= contentPartTop && scrollTop < contentPartTop + contentPartHeight) {
+                    // // 设置当前section元素对应的li元素为current类
+                    // lis[i].classList.add("current");
+                    // // 移除其他li元素的current类
+                    // for (var j = 0; j < lis.length; j++) {
+                    //     if (j != i) {
+                    //         lis[j].classList.remove("current");
+                    //     }
+                    // }
+                    break;
+                }
+            }
+
+            // 优化上面的代码，使用currentFloor变量来记录当前页面处于哪个section元素，初始值为-1，表示当前页面处于导航栏之上。好处是有节流效果，减少了添加和移除current类的次数。
+            if (i != currentFloor) {
+                // 设置当前section元素对应的li元素为current类
+                lis[i].classList.add("current");
+                // 移除其他li元素的current类
+                if (currentFloor != -1) {
+                    lis[currentFloor].classList.remove("current");
+                }
+                currentFloor = i;
+            }
+
+
+        });
+    </script>
+</body>
+
+</html>

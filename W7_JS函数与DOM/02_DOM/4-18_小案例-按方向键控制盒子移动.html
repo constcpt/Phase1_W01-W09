@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-18_小案例-按方向键控制盒子移动</title>
+    <style>
+        #box {
+            /* 设置盒子绝对定位，因为只有绝对定位才能让盒子在页面上自由的移动 */
+            position: absolute;
+            top: 200px;
+            left: 200px;
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+
+    <script>
+        var oBox = document.getElementById('box');
+
+        // 全局变量t、l，分别表示盒子的top属性值和left属性值
+        var t = 200;
+        var l = 200;
+
+        // 监听document对象的键盘按下这个事件，表示当用户在整个网页上按下按键的时候执行的程序
+        document.addEventListener("keydown", function (event) {
+            // 通过event.key属性获取用户按下的按键
+            switch (event.key) {
+                // 根据用户按下的按键，更改t、l的值
+                case "ArrowLeft":
+                    l -= 3;
+                    break;
+                case "ArrowUp":
+                    t -= 3;
+                    break;
+                case "ArrowRight":
+                    l += 3;
+                    break;
+                case "ArrowDown":
+                    t += 3;
+                    break;
+            }
+
+            // 更改样式
+            oBox.style.left = l + "px";
+            oBox.style.top = t + "px";
+        }); 
+    </script>
+</body>
+
+</html>

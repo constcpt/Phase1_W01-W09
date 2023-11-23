@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var arr = [];
+        for (var i = 0; i < 5; i++) {
+            //JS中的函数是对象，所以可以将函数存储在数组中。push 进 arr 的每一个函数都占用了同一个 i，形成了一个闭包
+            arr.push(function () {
+                alert(i);
+            });
+        }
+        arr[0](); // 5
+        arr[1](); // 5
+        arr[2](); // 5
+        arr[3](); // 5
+        arr[4](); // 5
+        var arr2 = [];
+        for (var i = 0; i < 5; i++) {
+            (function (a) {
+                //对于 push 进 arr2 的每个函数，都占用了一个不同的 a，形成了一个闭包
+                arr2.push(function () {
+                    alert(a);
+                });
+            })(i);
+        }
+        arr2[0](); // 0
+        arr2[1](); // 1
+        arr2[2](); // 2
+        arr2[3](); // 3
+        arr2[4](); // 4
+    </script>
+</body>
+
+</html>

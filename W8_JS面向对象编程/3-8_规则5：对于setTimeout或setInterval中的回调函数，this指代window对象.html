@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // this 指代什么规则5：对于 setTimeout或setInterval 中的回调函数，this 指代 window 对象
+
+        //例1
+        var obj = {
+            a: 1,
+            b: 2,
+            fun: function () {
+                console.log(this.a + this.b);
+            }
+        };
+        var a = 3;
+        var b = 4;
+        setTimout(obj.fun, 2000); // 2000ms后打印 3 + 4 = 7，this 指代 window 对象，适用于规则5。因为obj.fun是setTimeout的回调函数，所以this指向window对象
+
+        //例2
+        var obj2 = {
+            c: 1,
+            d: 2,
+            fun: function () {
+                console.log(this.c + this.d);
+            }
+        };
+        var c = 3;
+        var d = 4;
+        setTimeout(function () {
+            obj2.fun();
+        }, 2000); // 2000ms后打印 1 + 2 = 3，this 指代 obj2 对象，适用于规则1。因为匿名函数是setTimeout的回调函数，而obj2.fun是在匿名函数中由obj2对象调用的，所以this指向obj2对象，适用于规则1
+    </script>
+</body>
+
+</html>

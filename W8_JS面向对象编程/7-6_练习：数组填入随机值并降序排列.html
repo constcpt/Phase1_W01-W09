@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7-6_练习：数组填入随机值并降序排列</title>
+</head>
+<body>
+    <script>
+        // 创建一个空数组，用来接收后面的十个整数
+        var arr = [];
+
+        // 用for循环来生成十个随机整数，并将其添加到数组中
+        for (var i = 0; i < 10; i++) {
+
+            // 生成随机整数
+            var num = Math.floor(Math.random() * 101); // Math.random() 函数用来生成一个0到1之间的随机数，Math.floor() 函数用来对数字进行下取整
+
+            // 将随机整数添加到数组中
+            arr.push(num);
+        }
+
+        // 对数组进行降序排序
+        arr.sort(function (a, b) { // sort() 函数用来对数组进行排序，sort() 函数可以接收一个函数作为参数，这个函数可以用来指定排序规则，这个函数有两个参数，分别代表数组中的两个元素，这个函数的返回值可以是正数、负数或者0，如果返回值是正数，那么b会排在a的前面，如果返回值是负数，那么a会排在b的前面，如果返回值是0，那么a和b的位置不变
+            return b - a; 
+        });
+ 
+        // 将数组输出在页面上
+        document.write(arr);
+
+        // 输出数组的最大值和最小值
+        document.write('<br>数组的最大值是：' + arr[0]);
+        document.write('<br>数组的最小值是：' + arr[arr.length - 1]);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-15_事件对象01：鼠标位置相关属性</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 200px;
+            height: 200px;
+            background-color: #333;
+            margin: 100px;
+            padding: 50px;
+        }
+
+        body {
+            height: 2000px;
+        }
+
+        #info {
+            font-size: 30px;
+        }
+
+        p {
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <p></p>
+    </div>
+    <div id="info"></div>
+
+    <script>
+        var oBox = document.getElementById('box');
+        var oInfo = document.getElementById('info');
+
+        oBox.onmousemove = function (e) {
+            oInfo.innerHTML = 'offsetX/Y：' + e.offsetX + ',' + e.offsetY + '<br>'
+                + 'clientX/Y：' + e.clientX + ',' + e.clientY + '<br>'
+                + 'pageX/Y：' + e.pageX + ',' + e.pageY;
+        };
+        // offsetX/Y 表示鼠标相对于事件源元素的位置
+        // clientX/Y 表示鼠标相对于浏览器可视区域的位置
+        // pageX/Y 表示鼠标相对于整个页面的位置
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8-12_01Object.prototype是万物原型链的终点</title>
+</head>
+<body>
+    <script>
+        console.log([1, 2].__proto__ === Array.prototype); // true
+        console.log([1, 2].__proto__.__proto__ === Object.prototype); // true
+
+        console.log([] instanceof Object);
+        console.log([] instanceof Array);
+
+        console.log(Object.prototype.__proto__); // null
+        console.log(null.__proto__); // TypeError: Cannot read property '__proto__' of null
+    </script>
+</body>
+</html>

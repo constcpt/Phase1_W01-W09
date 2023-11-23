@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-24_练习：线性渐变</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            float: left;
+            margin-top: 30px;
+            margin-right: 20px;
+        }
+        p {
+            margin-top: -25px;
+            text-align: center;
+        }
+        /* 第一个div元素是从上向下发生渐变，颜色由黄色变成红色 */
+        .box1 {
+            background: linear-gradient(to bottom, yellow, red);
+        }
+        /* 第二个div元素是从左到右发生渐变，颜色由黄色变为红色 */
+        .box2 {
+            background: linear-gradient(to right, yellow, red);
+        }
+        /* 第三个div元素是从左上角到右下角发生渐变，颜色由红色变为黄色 */
+        .box3 {
+            background: linear-gradient(to bottom right, red, yellow);
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">
+        <p>上下方向渐变</p>
+    </div>
+    <div class="box2">
+        <p>左右方向渐变</p>
+    </div>
+    <div class="box3">
+        <p>左上到右下方向渐变</p>
+    </div>
+</body>
+</html>

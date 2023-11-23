@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-15_shoppingcart</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        section {
+            width: 100%;
+            background-color: #FAFAFA;
+            padding: 40px 0;
+        }
+        .center {
+            width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .btn {
+            float: left;
+            width: 200px;
+            height: 200px;
+            position: relative;
+        }
+        .btn img {
+            position: absolute;
+            top: 50%;
+            margin-top: -38px;
+            left: 50%;
+            margin-left: -76.5px;
+        }
+        .cart {
+            float: right;
+            width: 200px;
+            height: 200px;
+            position: relative;
+        }
+        .number {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 25px;
+            text-align: center;
+            line-height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="center">
+            <div class="btn">
+                <a href=""><img src="images/btn.png" alt="提交"></a>
+            </div>
+            <div class="cart">
+                <a href=""><img src="images/cart.png" alt="购物车"></a>
+                <div class="number">3</div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

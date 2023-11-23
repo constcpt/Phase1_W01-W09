@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-32_伪元素</title>
+    <style>
+        a::before {
+            content: "■";
+        }
+
+        a::after {
+            content: "❤";
+        }
+
+        .box1 {
+            /* 只需键入 w400，h300，bd 然后编辑器可以自动补全 */
+            width: 400px;
+            height: 300px;
+            border: 1px solid #000;
+        }
+
+        .box1::selection{
+            background-color: SpringGreen;
+            color: deeppink;
+        }
+
+        /* 使用伪元素 ::first-letter 让 box1 第一个字的字号变大 */
+        .box1::first-letter{
+            font-size: 50px;
+        }
+
+        /* 使用 ::first-line 给 box1 第一行文字添加下划线 */
+        .box1::first-line{
+            text-decoration: underline;
+            /* 去掉下划线是 text-decoration: none; */
+        }
+    </style>
+</head>
+
+<body>
+    <p>
+        <a href="">我是超级链接</a>
+    </p>
+    <p>
+        <a href="">我是超级链接</a>
+    </p>
+    <p>
+        <a href="">我是超级链接</a>
+    </p>
+
+    <div class="box1">
+        文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+    </div>
+</body>
+
+</html>

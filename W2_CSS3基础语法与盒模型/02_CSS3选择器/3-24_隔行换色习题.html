@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-24_隔行换色习题</title>
+    <style>
+        /* 使用序号选择器
+        div:nth-child(odd) {
+            color: red;
+        }
+        div:nth-child(even) {
+            color: green;
+        } 
+        */
+        /* 使用 class 选择器之原子类 */
+        .color-red {
+            color: red;
+        }
+        .color-green {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="color-red">我是红色的</div>
+    <div class="color-green">我是绿色的</div>
+    <div class="color-red">我是红色的</div>
+    <div class="color-green">我是绿色的</div>
+    <div class="color-red">我是红色的</div>
+    <div class="color-green">我是绿色的</div>
+</body>
+</html>

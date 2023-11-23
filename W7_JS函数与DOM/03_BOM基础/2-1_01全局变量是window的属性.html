@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-1_01全局变量是window的属性</title>
+</head>
+<body>
+    <script>
+        var a = 3;
+        console.log(window.hasOwnProperty('a')); // true，说明 window 对象确实有 a 属性
+        console.log(window.a);  // 3
+    </script>
+
+    <script src="js/js1.js"></script>
+    <script src="js/js2.js"></script>
+    <!-- 因为多个 JS 文件会被同一个 html 文件引入，为了让这些 JS 文件之间能配合工作，所以 JS 设计成了 window 对象管理所有全局变量 -->
+</body>
+</html>

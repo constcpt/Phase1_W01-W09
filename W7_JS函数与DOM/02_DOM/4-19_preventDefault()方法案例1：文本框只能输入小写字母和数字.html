@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-19_preventDefault()方法案例1：限制文本框只能输入小写字母和数字</title>
+</head>
+
+<body>
+    <p>
+        只能输入小写字母和数字：
+        <input type="text" id="field">
+    </p>
+    <script>
+        var oField = document.getElementById('field');
+
+        // oField.onkeypress = function (e) {
+        //     console.log(e.charCode);
+            
+        //     // 根据用户输入的字符的字符码（e.charCode)
+        //     // 数字0~9，字符码48~57
+        //     // 小写字母a~z，字符码97~122
+        //     if (!(e.charCode >= 48 && e.charCode <= 57 || e.charCode >= 97 && e.charCode <= 122)) {
+        //         // 阻止浏览器的默认行为
+        //         e.preventDefault();
+        //     }
+        // };
+
+        oField.addEventListener('keypress', function (event) {
+            console.log(event.key);
+            // 使用正则表达式检查event.key是否为小写字母或数字
+            if (!/^[a-z0-9]$/.test(event.key)) {
+                // 如果不是，阻止输入
+                event.preventDefault(); // event.preventDefault()方法会阻止浏览器的默认行为
+            }
+            // /^[a-z0-9]$/ 是一个正则表达式，它匹配任何单个的小写字母或数字。如果event.key的值不符合这个条件，event.preventDefault()方法会被调用，从而阻止输入。
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8-6_02Object.create()的兼容性写法（面试爱问）</title>
+</head>
+<body>
+    <script>
+        // 道格拉斯·克罗克福德在2006年写的一个函数，非常巧妙，面试常考
+        // 目的是在低版本浏览器中，实现Object.create()的功能
+        // 函数的功能就是以o为原型，创建新对象
+        function object(o) {
+            // 创建一个临时构造函数
+            function F() {}
+            // 让这个临时构造函数的prototype指向o，这样一来它new出来的对象，__proto__指向了o
+            F.prototype = o;
+            // 返回F的实例
+            return new F();
+        }
+
+        var obj1 = {
+            a: 23,
+            b: 5
+        };
+
+        var obj2 = object(obj1);
+
+        console.log(obj2.__proto__ === obj1); // true
+        console.log(obj2.a); // 23
+        console.log(obj2.b); // 5
+    </script>
+</body>
+</html>

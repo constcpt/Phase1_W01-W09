@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-8_过渡效果实战1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            width: 1200px;
+            /* 设置盒子形成 BFC  */
+            overflow: hidden;
+            margin: 40px auto;
+        }
+        .box ul {
+            /* 我会尝试让 ul 盒子形成 BFC 来清除浮动，而不是在 ul 的上层 div 盒子设置 BFC */
+            /* 为什么不在 ul 盒子里设置 overflow: hidden 解释见：https://class.imooc.com/course/qadetail/305360 */
+            list-style: none;
+        }
+        .box ul li {
+            float: left;
+            /* 为每一个设置了浮动后的元素固定宽高可以避免很多麻烦，比如由内容撑起来的导致高度不一致，就会导致浮动时发生卡住的问题 */
+            width: 380px;
+            height: 210px;
+            margin-right: 20px;
+            position: relative;
+        }
+        .box ul li img {
+            width: 380px;
+            height: 210px;
+        }
+        .box ul li .info {
+            /* 使用子绝父相制作压盖效果 */
+            position: absolute;
+            /* 绝对定位后的盒子不再具有块级元素 width 自动撑满的特性，通常需要手动设置盒子宽度 */
+            width: 370px;
+            /* 绝对定位后的盒子形成了 BFC，其高度还是会由内容撑开，也可以手动设置 */
+            height: 30px;
+            line-height: 30px;
+            color: white;
+            bottom: 0;
+            padding-left: 10px;
+            background-color: rgba(0, 0, 0, .5);
+            /* 不透明度 opacity 设为 0 代表完全透明，不是背景的透明度而是元素整体的透明度 */
+            opacity: 0;
+            /* 使用过渡属性添加 opacity 属性由 0 到 1 变化的中间动画，缓动参数 ease 代表两头慢中间快 */
+            transition: opacity 1s ease 0s;
+        }
+        /* 当 li 被触碰的时候，内部的 info 盒子就要把不透明度变为 1 代表完全不透明 */
+        .box ul li:hover .info {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <ul>
+            <li>
+                <img src="images/0.jpg" alt="">
+                <div class="info">北京的故宫</div>
+            </li>
+            <li>
+                <img src="images/1.jpg" alt="">
+                <div class="info">鸟巢国家体育场</div>
+            </li>
+            <li>
+                <img src="images/2.jpg" alt="">
+                <div class="info">十七孔桥</div>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

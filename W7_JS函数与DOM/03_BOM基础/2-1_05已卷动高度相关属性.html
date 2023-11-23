@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-1_05已卷动高度相关属性</title>
+    <style>
+        body {
+            height: 5000px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        console.log(window.scrollY);
+        console.log(document.documentElement.scrollTop);
+        // 注意：
+        // 1. window.scrollY 是只读属性，不能修改
+        // 2. document.documentElement.scrollTop 是可读可写属性，可以修改 scrollTop 的值来改变卷动高度。比如说回到顶部的功能，就是通过修改 scrollTop 的值来实现的。
+    </script>
+</body>
+</html>

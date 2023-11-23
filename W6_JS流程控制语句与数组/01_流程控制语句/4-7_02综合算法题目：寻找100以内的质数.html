@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-7_02综合算法题目：寻找100以内的质数</title>
+</head>
+
+<body>
+    <script>
+        // 寻找100以内的质数
+
+        //穷举法
+        outer: for (var i = 2; i <= 100; i++) {
+            // 内层循环从2开始尝试到小于 i 的每一个数字都尝试除i，如果能够整除，说明它不是质数，就可以筛选下一个数字了 
+            for (var j = 2; j < i; j++) {
+                if (i % j == 0) {
+                    //如果找到了除了1和它自身的约数，说明数字i不是质数
+                    //continue想要达到的效果是放弃本轮数字i，开始迭代下一个数字，但是continue负责略过的本来是它所在的最内层的for循环，如何写才能开始迭代外层for循环的下一个数字呢？
+                    //给外层for循环加一个label，然后在continue的后面加上这个label，这样就表示立即开始迭代外层for循环的下一个数字，而不是内层for循环
+                    continue outer;
+                }
+            }
+            console.log(i);
+        }
+
+        // chatGPT 给出的答案，不用label语句的写法，在别的编程语言中也是类似的写法
+        for (let num = 1; num <= 100; num++) {
+            let count = 0;
+            for (let i = 2; i <= num / 2; i++) {
+                if (num % i === 0) {
+                    count++;
+                    break;
+                }
+            }
+            if (count === 0 && num !== 1) {
+                console.log(num);
+            }
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-14_利用BOM的特效开发02 - 先介绍offsetTop属性</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            border: 4px solid red;
+            width: 400px;
+            height: 400px;
+            /* margin 上下 60 左右 auto  */
+            margin: 60px auto;
+        }
+
+        ul {
+            padding-top: 10px;
+        }
+
+        li {
+            padding-top: 10px;
+            position: relative;
+        }
+        #para {
+            width: 80px;
+            height: 80px;
+            background-color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <ul>
+            <li><p id="para"></p></li>
+        </ul>
+    </div>
+    <script>
+        var para = document.getElementById("para");
+        // 使用offsetTop属性值尝试得到该元素到页面顶部的距离。
+        // 注意offsetTop属性值表示的是元素到有定位的父元素的距离。如果没有有定位的父元素，那么offsetTop属性值表示的是元素到body元素的距离。
+        console.log(para.offsetTop); // 10
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>
+        用户名：<input type="text" id="username">
+    </p>
+    <p>
+        密码：<input type="password" id="password">
+    </p>
+    <p>
+        <button id="btn">提交</button>
+    </p>
+    <script>
+        var btn = document.getElementById('btn');
+        btn.addEventListener('click', function () {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            if (username === '张三' && password === '123456') {
+                window.location.href = 'http://www.imooc.com';
+            } else {
+                alert('用户名或密码错误');
+            }
+        });
+
+        //为什么这里JS定义变量不能使用name作为变量名?
+        /**
+         *  在 JavaScript 中，你确实可以使用 `name` 作为变量名。然而，在浏览器环境中，你可能会遇到一些预料之外的问题。
+
+            这是因为在浏览器的全局作用域中（即 `window` 对象），已经有一个属性叫 `name`。当你在全局作用域中声明一个名为 `name` 的变量，你实际上是在修改这个已经存在的 `window.name` 属性，而不是创建一个新的全局变量。`window.name` 属性用于设置或获取当前窗口的名称。
+
+            如果你在一个函数的局部作用域中声明一个名为 `name` 的变量，那么就不会有问题，因为这个变量和 `window.name` 是完全独立的。
+
+            为了避免可能的混淆和问题，你可能会想要避免使用 `name` 作为变量名，尤其是在全局作用域中。
+         */
+    </script>
+</body>
+
+</html>

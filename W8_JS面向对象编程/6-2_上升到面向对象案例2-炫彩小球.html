@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6-2_上升到面向对象案例2-炫彩小球</title>
+    <style>
+        body {
+            background-color: black;
+        }
+
+        .ball {
+            position: absolute;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function Ball(x, y) {
+            this.circleCenterX = x;
+            this.circleCenterY = y;
+            this.circleColor = colors[parseInt(Math.random() * colors.length)];
+            this.circleRadius = 20;
+            this.circleOpacity = 1;
+            do {
+                this.circleMoveDeltaX = parseInt(Math.random() * 21) - 10; // Math.random()返回0到1之间的随机数，包括0但不包括1，parseInt()方法会将小数部分去掉，只保留整数部分。所以parseInt(Math.random() * 21)返回的是0到20之间的随机数，再减去10，就是-10到10之间的随机数。
+                this.circleMoveDeltaY = parseInt(Math.random() * 21) - 10; // y方向的移动增量为-10到10之间的随机数
+            } while (this.circleMoveDeltaX === 0 && this.circleMoveDeltaY === 0) // 如果x和y方向的移动增量都是0，那么重新生成x和y方向的移动增量，直到x和y方向的移动增量不都是0为止。
+            /*
+                在这里设置小球的移动增量而不在update方法中设置，是为了让小球在创建时就有一个固定的移动的方向。
+                如果在update方法中设置x和y方向的移动增量，那么小球在每一帧都会随机改变移动的方向。
+                */
+            this.init();
+            balls.push(this);
+        }
+        // init 方法用于为小球对象创建对应的DOM元素，并添加到页面中
+        Ball.prototype.init = function () {
+            this.domElement = document.createElement("div");
+            this.domElement.classList.add("ball");
+            this.domElement.style.width = this.circleRadius * 2 + "px";
+            this.domElement.style.height = this.circleRadius * 2 + "px";
+            // this.domElement.style.borderRadius = "50%";
+            this.domElement.style.backgroundColor = this.circleColor;
+            this.domElement.style.opacity = this.circleOpacity;
+            // this.domElement.style.position = "absolute";
+            this.domElement.style.left = this.circleCenterX - this.circleRadius + "px";
+            this.domElement.style.top = this.circleCenterY - this.circleRadius + "px";
+            document.body.appendChild(this.domElement);
+        };
+        // update 方法用于更新小球的位置，半径，透明度
+        Ball.prototype.update = function () {
+            // this.circleCenterX += parseInt(Math.random() * 20) - 10;
+            // this.circleCenterY += parseInt(Math.random() * 20) - 10;
+            this.circleCenterX += this.circleMoveDeltaX;
+            this.circleCenterY += this.circleMoveDeltaY;
+            this.circleRadius += 0.2;
+            this.circleOpacity -= 0.01;
+            // 当透明度小于0时，删除对应的DOM元素，并从balls数组中删除对应的小球对象
+            if (this.circleOpacity <= 0) {
+                document.body.removeChild(this.domElement);
+                for (var i = 0; i < balls.length; i++) {
+                    if (balls[i] === this) {
+                        balls.splice(i, 1); // 数组的多功能方法splice，用于删除数组中的元素，第一个参数为删除的起始位置，第二个参数为删除的个数
+                    }
+                }
+            }
+            // 不要忘了更新DOM元素的位置，半径，透明度
+            this.domElement.style.left = this.circleCenterX - this.circleRadius + "px";
+            this.domElement.style.top = this.circleCenterY - this.circleRadius + "px";
+            this.domElement.style.width = this.circleRadius * 2 + "px";
+            this.domElement.style.height = this.circleRadius * 2 + "px";
+            this.domElement.style.opacity = this.circleOpacity;
+        };
+        // balls数组用于存储所有的小球对象，方便遍历每个小球对象调用其update方法更新位置。colors数组用于存储小球的颜色，方便在实例化小球对象时随机选择颜色。
+        var balls = [];
+        var colors = ['#66CCCC', '#CCFF66', '#FF99CC', '#FF6666', '#CC3399', '#FF6600'];
+        // 监听鼠标移动事件，每次鼠标移动时，创建一个小球对象
+        document.addEventListener("mousemove", function (e) {
+            new Ball(e.clientX, e.clientY); // e 表示事件对象，事件对象中的clientX和clientY属性表示鼠标指针在浏览器窗口中的x和y坐标
+        });
+        // 只用一个定时器，在定时器中遍历所有的小球对象，调用其update方法更新位置。
+        setInterval(function () {
+            for (var i = 0; i < balls.length; i++) {
+                balls[i].update();
+            }
+        }, 20); // 20ms更新一次，即每帧间隔20ms 
+
+        
+    </script>
+</body>
+</html>

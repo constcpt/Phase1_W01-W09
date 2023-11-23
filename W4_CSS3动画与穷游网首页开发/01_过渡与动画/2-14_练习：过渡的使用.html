@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-14_练习：过渡的使用</title>
+    <style>
+        #myTest {
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+            background-color: #f43838;
+            margin: auto;
+            margin-top: 100px;
+            color: #FFF;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: bold;
+            /*添加代码*/
+            transition: all 0.5s ease 0s;
+        }
+
+        #myTest:hover {
+            /*添加代码*/
+            transform: scale(2);
+            background-color: green;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="myTest"> duang! </div>
+</body>
+
+</html>

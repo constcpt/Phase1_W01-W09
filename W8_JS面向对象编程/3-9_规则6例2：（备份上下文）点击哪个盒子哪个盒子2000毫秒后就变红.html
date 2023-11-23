@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            float: left;
+            border: 1px solid #000;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box1"></div>
+    <div id="box2"></div>
+    <div id="box3"></div>
+
+    <script>
+        // 实现效果：点击哪个盒子哪个盒子2000毫秒后就变红，要求使用同一个事件处理函数实现
+        function setColorToRed() {
+            var self = this; // 使用一个变量保存 this 指代的对象，在这里就是点击的DOM元素，适用于规则6
+            setTimeout(function () {
+                self.style.backgroundColor = 'red'; // self 指代 box1、box2、box3 中的一个，适用于规则6。注意，这里不能使用 this，因为 this 指代 window 对象，不适用于规则6。这里也涉及了闭包的知识
+            }, 2000);
+        }
+
+        var box1 = document.getElementById('box1');
+        var box2 = document.getElementById('box2');
+        var box3 = document.getElementById('box3');
+
+        box1.addEventListener('click', setColorToRed);
+        box2.addEventListener('click', setColorToRed);
+        box3.addEventListener('click', setColorToRed);
+
+        // 为什么要保存 this 指代的对象？又称备份上下文
+        // 因为 setTimeout 函数是 window 对象的方法，所以在 setTimeout 函数中的 this 指代 window 对象，而不是 box1、box2、box3 中的一个，所以不适用于规则6
+        // 为了解决这个问题，我们可以在 setTimeout 函数中使用前面讲过的闭包的方法，将 this 指代的对象保存在一个变量中，然后在 setTimeout 函数中使用这个变量
+        // 备份上下文很常用，因为很多时候我们需要在一个函数中使用另一个函数的上下文，而不是自己的上下文。尤其是在事件处理函数中，我们经常需要使用绑定事件的 DOM 元素，而不是 window 对象。备份上下文使用的变量通常命名为 self，也可以是 that、_this 等。
+        // 什么时候要备份上下文？当一个函数又有一个内层函数的时候就要当心了，很有可能内外层函数的 this 指代的对象不一样。有经验的JS程序员在写this时会先想想此时函数的上下文是什么，多留心避免出错。
+
+        // 备份上下文还有别的方法，如下：
+        // 1. 使用 bind 方法
+        // 2. 使用箭头函数
+
+        // 1. 使用 bind 方法
+        // function setColorToRed() {
+        //     setTimeout(function () {
+        //         this.style.backgroundColor = 'red';
+        //     }.bind(this), 2000);
+        // }
+
+        // 2. 使用箭头函数
+        // function setColorToRed() {
+        //     setTimeout(() => {
+        //         this.style.backgroundColor = 'red';
+        //     }, 2000);
+        // }
+
+        // 在 JavaScript 中，箭头函数是一种特殊的函数，它的 this 值是在定义时确定的，而不是在调用时确定的。具体来说，箭头函数的 this 值指向的是它所在的上下文的 this 值，而不是调用时的上下文。
+    </script>
+</body>
+
+</html>

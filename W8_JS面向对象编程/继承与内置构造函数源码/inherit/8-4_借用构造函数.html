@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8-4_借用构造函数</title>
+</head>
+<body>
+    <script>
+        function People(name, sex, age) {
+            this.name = name;
+            this.sex = sex;
+            this.age = age;
+            this.arr = [33, 44, 55];
+        }
+        function Student(name, sex, age, school, studentNumber) {
+            // People(name, sex, age); //错误，这样写相当于调用了一个普通函数，this指向window
+            // People.call(this, name, sex, age); // 正确做法：用call或apply方法指定函数的上下文，在这里就是将People函数中的this指向Student
+            People.apply(this, [name, sex, age]);
+
+            this.school = school;
+            this.studentNumber = studentNumber;
+        }
+        
+        var xiaoming = new Student('小明', '男', 12, '小慕学校', 100666);
+        console.log(xiaoming);
+        xiaoming.arr.push(77);
+        console.log(xiaoming.arr);  // [33, 44, 55, 77] 
+        console.log(xiaoming.hasOwnProperty('arr'));
+        
+        var xiaohong = new Student('小红', '女', 11, '小慕学校', 100667);
+        console.log(xiaohong.arr); // [33, 44, 55]
+        console.log(xiaohong.hasOwnProperty('arr'));
+
+        // 通过借用构造函数实现继承的优点：
+        // 1. 可以传递参数，简化了子类构造函数的实现
+        // 2. 即使父类有引用类型的属性，也不会被共享，实现了实例之间属性的独立
+    </script>
+</body>
+</html>

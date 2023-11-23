@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function changeDateformat() {
+            var dateObj = new Date();
+            var year = dateObj.getFullYear();
+            var month = dateObj.getMonth() + 1;
+            var date = dateObj.getDate();
+            var hour = dateObj.getHours();
+            var minute = dateObj.getMinutes();
+            var second = dateObj.getSeconds();
+            var weekArr = ['日', '一', '二', '三', '四', '五', '六'];
+            var week = weekArr[dateObj.getDay()];
+            var str1 = `今天是${year}年${month}月${date}日 星期${week}`;
+            var str2 = `${hour}:${minute}:${second}`;
+            return str1 + '<br>' + str2;
+        }
+
+        document.write(changeDateformat());
+
+    </script>
+</body>
+</html>

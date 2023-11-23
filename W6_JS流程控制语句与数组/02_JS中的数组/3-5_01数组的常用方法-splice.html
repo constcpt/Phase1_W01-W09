@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-5_01数组的常用方法-splice</title>
+</head>
+<body>
+    <script>
+        // 使用 splice() 方法替换数组中的项
+        // var arr = [0, 1, 2, 3, 4, 5];
+        // arr.splice(3, 2, 66, 77, 88, 99);
+        // console.log(arr); // [0, 1, 2, 66, 77, 88, 99, 5]
+        
+
+        // ***************************
+        // 使用 splice() 方法在数组的指定位置插入新项
+        // var arr = [0, 1, 2, 3, 4, 5];
+        // arr.splice(2, 0, 44, 55, 66, 77);
+        // console.log(arr); // [0, 1, 44, 55, 66, 77, 2, 3, 4, 5]
+        
+        // ***************************
+        // 使用 splice() 方法删除数组中的项
+        // var arr = ['苹果', '鸭梨', '西瓜', '水蜜桃'];
+        // arr.splice(2, 1);
+        // console.log(arr); // ["苹果", "鸭梨", "水蜜桃"]
+        
+        // ***************************
+        // splice() 方法会以数组形式返回被删除的项
+        var arr = [0, 1, 2, 3, 4, 5];
+        var items = arr.splice(3, 2, 66, 77, 88, 99);
+        console.log(arr);
+        console.log(items);
+    </script>
+</body>
+</html>

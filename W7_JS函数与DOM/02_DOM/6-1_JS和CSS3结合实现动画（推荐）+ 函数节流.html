@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6-1_JS和CSS3结合实现动画（推荐）</title>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+            position: absolute;
+            top: 100px;
+            left: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn">按我运动</button>
+    <div id="box"></div>
+
+    <script>
+        // 得到元素
+        var btn = document.getElementById('btn');
+        var box = document.getElementById('box');
+
+        // 标识量，指示当前盒子在左边还是右边
+        var pos = 1;    // 1左边，2右边
+
+        // 函数节流锁
+        var allowRun = true; // true 表示锁是打开的允许执行，false 表示锁是关闭的，不允许执行
+
+        // 事件监听
+        btn.addEventListener('click', function () {
+            // 事件被触发时首先检查锁是否是关闭，如果是关闭的，就不执行
+            if (allowRun === false) return;
+
+            // 把过渡加上
+            box.style.transition = 'all 2s linear 0s';
+            if (pos == 1) {
+                // 瞬间移动，但是由于有过渡，所以是动画
+                box.style.left = '1100px';
+                pos = 2;
+            } else if (pos == 2) {
+                // 瞬间移动，但是由于有过渡，所以是动画
+                box.style.left = '100px';
+                pos = 1;
+            }
+
+            // 关锁
+            allowRun = false;
+            // 指定时间后，将锁打开
+            setTimeout(function () {
+                allowRun = true;
+            }, 2000);
+        }); 
+
+        // 使用 CSS3 和 JS 结合的方式实现动画，比使用定时器实现动画的方式更简单直接
+    </script>
+</body>
+
+</html>

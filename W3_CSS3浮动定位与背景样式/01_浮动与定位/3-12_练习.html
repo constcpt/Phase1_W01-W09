@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-12_练习</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 设置图片宽度为百分百，这样会适应屏幕宽度显示 */
+        /* 图片可以设置宽高百分比，但是得有计算参考值，即父元素需要有对应的宽高；其他元素宽高百分比同理 */
+        /* https://class.imooc.com/course/qadetail/339135 */
+        /* https://class.imooc.com/course/qadetail/338851 */
+        .box img {
+            width: 100%;
+            /* height: 100%; */
+        }
+
+        /* 公共部分 */
+        .ad {
+            width: 224px;
+            height: 364px;
+            position: fixed;
+            top: 50%;
+            margin-top: -182px;
+        }
+
+        /* 个性 */
+        .adleft {
+            left: 0;
+        }
+
+        .adright {
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <img src="http://climg.mukewang.com/59c9f7ce0001839219034033.png" alt="慕课网背景">
+    </div>
+    <aside class="adleft ad">
+        <img src="http://climg.mukewang.com/5a3383c70001f1b702240364.png" alt="Web前端工程师广告">
+    </aside>
+    <aside class="adright ad">
+        <img src="http://climg.mukewang.com/5a3383d00001a3dd02240364.png" alt="Java工程师广告">
+    </aside>
+</body>

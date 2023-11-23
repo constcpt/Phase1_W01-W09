@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-8_练习</title>
+</head>
+
+<body>
+    <script>
+        var arr=[["慕","课","网"],["程","序","员"],["梦","工","厂"]];
+        var str = ""; //一开始为 str 赋值为空字符串，这样后面的 str += arr[i][j] 才能正常拼接。不然输出是 undefined慕课网, 程序员的梦工厂
+        // arr.splice(1, 0, ", ");
+        // arr.splice(3, 0, "的");
+        arr[0][3] = ", "; // JS 中如果更改的数组项越界了，则会创造这一项，并相应更新数组长度，在别的语言中，这样的操作会报错。
+        arr[1][3] = "的";
+        for (var i = 0; i < arr.length; i++) {
+            for (var j = 0; j < arr[i].length; j++) {
+                str += arr[i][j];
+            }
+        }
+        console.log(str);
+    </script>
+</body>
+
+</html>

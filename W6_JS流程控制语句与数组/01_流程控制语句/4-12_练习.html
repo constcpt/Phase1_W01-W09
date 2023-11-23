@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-12_练习</title>
+</head>
+
+<body>
+    <script>
+        var counter = 0;
+        // 假设毛巾数量为a，牙刷为b，牙膏为c
+        for (var a = 0; a <= 20; a++) {
+            for (var b = 0; b <= 50; b++) {
+                for (var c = 0; c <= 10; c++) {
+                    if (5 * a + 2 * b + 10 * c == 100) {
+                        counter++;
+                    }
+                }
+            }
+        }
+
+        console.log(`There are ${counter} ways to spend 100 yuan`)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-5_02数组的常见方法-slice方法</title>
+</head>
+<body>
+    <script>
+        // 数组的slice方法不会改变原数组，而是返回一个新数组
+        var arr = ['A', 'B', 'C', 'D', 'E', 'F'];
+        var child_arr1 = arr.slice(2, 5); // 从索引2开始，到索引5结束，但不包括索引5
+        var child_arr2 = arr.slice(2); // 从索引2开始，到数组末尾结束
+        var child_arr3 = arr.slice(2, -1); // 从索引2开始，到倒数第二个元素结束
+        console.log(child_arr1); // ["C", "D", "E"]
+        console.log(child_arr2);
+        console.log(child_arr3); // ["C", "D", "E"]
+    
+    </script>
+</body>
+</html>

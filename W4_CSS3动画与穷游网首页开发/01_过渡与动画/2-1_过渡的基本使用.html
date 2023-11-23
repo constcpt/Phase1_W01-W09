@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-1_过渡的基本使用</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .box1 {
+            width: 200px;
+            height: 200px;
+            background-color: orange;
+            /* 注意时间数值后的单位 s 不能省略 */
+            transition: width 5s linear 0s;
+            margin-bottom: 10px;
+        }
+        .box1:hover {
+            width: 800px;
+        }
+
+        .box2 {
+            margin-bottom: 10px;
+        }
+        .box2 p {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            background-color: orange;
+            /* 这里开始状态属性值必须写，不然过渡失效 */
+            left: 0;
+            transition: left 1s linear 0s;
+        }
+        .box2:hover p {
+            left: 1000px;
+        }
+
+        .box3 {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            transition: background-color 1s linear 0s;
+            margin-bottom: 10px;
+        }
+        .box3:hover {
+            background-color: green;
+        }
+
+        .box4 {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            margin-bottom: 10px;
+            /* 这里开始状态属性值又可以不写，过渡效果不失效 */
+            border-radius: 0%;
+            transition: border-radius 1s linear 0s;
+
+        }
+        .box4:hover {
+            border-radius: 50%;
+        }
+
+        /* 实验 2D 变形的过渡 */
+        .box5 {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 10px;
+            background-color: orange;
+            transition: transform 1s linear 0s;
+        }
+        .box5:hover {
+            /* 观察到正方型盒子又能一边放大又能一边旋转，可见 2D 变形也是可以被过渡的 */
+            transform: scale(1.2) rotate(360deg);
+        }
+
+        /* 实验 3D 变形的过渡，3D 变形一定要写 perspective 属性 */
+        .box6 {
+            perspective: 200px;
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+            margin-bottom: 10px;
+        }
+        .box6 p {
+            width: 200px;
+            height: 200px;
+            background-color: orange;
+            transition: transform 1s linear 0s;
+        }
+        .box6:hover p {
+            
+            transform: rotateX(360deg) rotateY(360deg);
+        }
+
+        /* 实验使用 all */
+        .box7 {
+            width: 200px;
+            height: 200px;
+            background-color: orange;
+            border-radius: 0%;
+            margin-bottom: 10px;
+            transition: all 1s linear 0s;
+        }
+        .box7:hover {
+            width: 400px;
+            height: 160px;
+            border-radius: 50%;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2">
+        <p></p>
+    </div>
+    <div class="box3"></div>
+    <div class="box4"></div>
+    <div class="box5"></div>
+    <div class="box6">
+        <p></p>
+    </div>
+    <div class="box7"></div>
+</body>
+</html>

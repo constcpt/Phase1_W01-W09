@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7-8_多种方法求数组的最大最小值</title>
+</head>
+<body>
+    <script>
+
+        // 1.使用Math.max()和Math.min()方法
+        var arr = [33, 44, 55, 66, 77, 88, 99, 11, 22];
+        var maxNum = Math.max.apply(null, arr);
+        var minNum = Math.min.apply(null, arr);
+        console.log(maxNum); // 99
+        console.log(minNum); // 11
+
+        // 2.使用sort()方法
+        var arr2 = [33, 44, 55, 66, 77, 88, 99, 11, 22];
+        arr2.sort(function (a, b) {
+            return b - a;
+        });
+        console.log(arr2[0]); // 99
+        console.log(arr2[arr2.length - 1]); // 11
+
+        // 3.使用for循环
+        var arr3 = [33, 44, 55, 66, 77, 88, 99, 11, 22];
+        var maxNum3 = arr3[0];
+        var minNum3 = arr3[0];
+        for (var i = 1; i < arr3.length; i++) {
+            if (arr3[i] > maxNum3) {
+                maxNum3 = arr3[i];
+            }
+            if (arr3[i] < minNum3) {
+                minNum3 = arr3[i];
+            }
+        }
+        console.log(maxNum3); // 99
+        console.log(minNum3); // 11
+
+        // 4. 先冒泡排序，再取第一个和最后一个
+        var arr4 = [33, 44, 55, 66, 77, 88, 99, 11, 22];
+        var isSorted = false;
+        for (var i = 0; i < arr4.length - 1; i++) {
+            for (var j = 0; j < arr4.length - 1 - i; j++) {
+                if (arr4[j] < arr4[j + 1]) {
+                    var temp = arr4[j];
+                    arr4[j] = arr4[j + 1];
+                    arr4[j + 1] = temp;
+                }
+                
+            }
+        }
+        console.log(arr4[0]); // 99
+        console.log(arr4[arr4.length - 1]); // 11
+    </script>
+</body>
+</html>

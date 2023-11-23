@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-2_width和height属性详解</title>
+    <style>
+        .box1 {
+            /* 宽度省略掉，由于div是块级元素，能够自动撑满 */
+            height: 100px;
+            background-color: red;
+        }
+
+        a {
+            /* 对于元素 a，宽度省略掉就不能自动撑满，因为 a 标签是行内元素 */
+            height: 100px;
+            background-color: red;
+        }
+
+        .box2 {
+            /* 不管是块级元素还是行内元素，如果高度省略掉，则高度默认是 0，但能够被内容自动撑起来 */
+            /* 一旦设置了高度，比方说设置为 100px，不管内容有多少盒子高度都会是 100px，意味着内容如果较多可能会溢出 */
+            /* 正因为盒子高度可以被内部文字所撑开，所以不是所有盒子都要给高度，有的时候可以被省略 */
+            width: 200px;
+            background-color: blue;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box1"></div>
+    <a href="">我是超级连接</a>
+    <div class="box2">
+        文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-17_属性选择器</title>
+    <style>
+        img {
+            width: 300px;
+        }
+
+        img[alt|="参赛作品"] {
+            border: 3px solid red;
+        }
+
+        /*
+            [alt] 选择具有 alt 属性的所有元素
+            [alt = "北京故宫"] 精准选择具有 alt 属性值为 "北京故宫" 的所有元素
+            [alt ^= "abc"] 开头匹配：选择具有 alt 属性值以 "abc" 开头的所有元素
+            [alt $= "abc"] 结尾匹配：选择具有 alt 属性值以 "abc" 结尾的所有元素
+            [alt *= "abc"] 包含匹配：选择具有 alt 属性值包含 "abc" 的所有元素
+            [alt |= "abc"] 选择具有 alt 属性值以 "abc-" 开头的所有元素
+            [alt ~= "abc"] 选择具有 alt 属性，此属性值是一个词列表，并且以空格隔开，其中词列表中包含单词 "abc"
+         */
+    </style>
+</head>
+
+<body>
+    <!-- alt属性之前学习过表示对图片的描述，会在浏览器无法加载图片时显示其中的文本 -->
+    <img src="images/bj/0.jpg" alt="参赛作品-北京故宫">
+    <img src="images/bj/1.jpg" alt="北京鸟巢国家体育场夜景">
+    <img src="images/bj/2.jpg" alt="北京十七孔桥 手机拍摄">
+
+    <img src="images/wx/0.jpg" alt="参赛作品-无锡体育场">
+    <img src="images/wx/1.jpg" alt="无锡太湖 手机拍摄">
+    <img src="images/wx/2.jpg" alt="无锡公园 手机拍摄">
+    <img src="images/wx/3.jpg" alt="参赛作品-无锡夜景">
+</body>
+
+</html>

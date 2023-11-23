@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-3_规则2：函数独立调用，则在浏览器中函数中的this指代window</title>
+</head>
+<body>
+    <script>
+        // this 指代什么规则2：函数独立调用，则在浏览器中函数中的this指代window（在Node.js中指代global）
+        var obj1 = {
+            a: 1,
+            b: 2,
+            fn: function () {
+                console.log(this.a + this.b);
+            }
+        };
+        var a = 5; // 全局变量都是window对象的属性
+        var b = 6;
+        var fn = obj1.fn;
+        fn(); // 11，this指代window对象
+
+
+        // 经典面试题，考察了this指代规则1和规则2
+        function fun() {
+            return this.c + this.d;
+        }
+        var c = 1;
+        var d = 2;
+        var obj2 = {
+            c: 3,
+            d: fun(), // 1 + 2 = 3, this 指代 window 对象。适用于规则2
+            fun: fun
+        };
+        var result = obj2.fun(); // this 指代 obj2，3 + 3 = 6。适用于规则1
+        console.log(result); // 6
+
+        // 初学者常犯的错误：认为函数定义在哪个对象里，函数上下文（this 指代的对象）就一定是这个对象。
+        // 实际上定义在对象里的函数也可以被"拎出来"（将函数的引用赋值给一个全局变量去存储），然后通过全局变量调用函数，这时函数中的 this 指代 window 对象。
+    </script>
+</body>
+</html>
